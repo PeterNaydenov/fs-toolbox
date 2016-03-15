@@ -1,0 +1,30 @@
+{
+  "name": "fs-toolbox",
+  "version": "1.0.0",
+  "description": "File System Toolbox",
+  "main": "fs-toolbox.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeterNaydenov/fs-toolbox.git"
+  },
+  "keywords": [
+    "fs",
+    "file",
+    "folder",
+    "toolbox"
+  ],
+  "author": "Peter Naydenov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PeterNaydenov/fs-toolbox/issues"
+  },
+  "homepage": "https://github.com/PeterNaydenov/fs-toolbox#readme"
+}
