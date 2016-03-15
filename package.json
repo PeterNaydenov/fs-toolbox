@@ -1,14 +1,14 @@
 {
   "name": "fs-toolbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "File System Toolbox",
   "main": "fs-toolbox.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-                      "ask-for-promise" : ">1.0.0"
-    },
+    "ask-for-promise": ">1.0.0"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "test"
