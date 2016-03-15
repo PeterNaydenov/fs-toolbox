@@ -7,9 +7,11 @@
     "test": "test"
   },
   "dependencies": {
-    "ask-for-promise": ">1.0.0"
+                        "ask-for-promise": ">1.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+                        "chai": ">=3.5.0"
+    },
   "scripts": {
     "test": "test"
   },
