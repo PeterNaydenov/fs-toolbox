@@ -669,7 +669,7 @@ model : function () {
 
 
 
-, reduce : function reduce () {  
+, keep : function keep () {  
   // * Reduce files in cache.
 	
 	var  
@@ -739,7 +739,7 @@ model : function () {
 
     toolbox.set ( 'files', m.list  )
     afterReduce.call ( m , 'files' )
-  } // reduce func.
+  } // keep func.
 
 
 
@@ -778,7 +778,7 @@ model : function () {
 
 
 
-, reduceFolders : function reduceFolders () {
+, keepFolders : function keepFolders () {
   // * Keeps only folders with specific string in the path.
    var 
    		  folders = cache.folders
@@ -813,7 +813,7 @@ model : function () {
    toolbox.set ( 'folders', m.list )
    afterReduce.call ( m, 'folders' )
 
-  } // reduceFolders func.
+  } // keepFolders func.
 
 
 
@@ -834,7 +834,7 @@ model : function () {
 
 
 
-, reduceFoldersInSteps : function reduceFoldersInSteps () {
+, keepFoldersInSteps : function keepFoldersInSteps () {
   // * Reduce folder sequence. 
 	var
 	   	  m = toolbox.model()
@@ -858,13 +858,13 @@ model : function () {
    	      } // if deep
 
    	   if ( !m.error ) {
-   	   					  if ( deep )  m.set.list.forEach ( ( el, i ) => toolbox.reduceFolders ( [el], { deep:deep[i] }, ()=>{} )   )
-   	   					  else         m.set.list.forEach (   el      => toolbox.reduceFolders ( [el],                   ()=>{} )   )
+   	   					  if ( deep )  m.set.list.forEach ( ( el, i ) => toolbox.keepFolders ( [el], { deep:deep[i] }, ()=>{} )   )
+   	   					  else         m.set.list.forEach (   el      => toolbox.keepFolders ( [el],                   ()=>{} )   )
    	      }
    	   
    	   afterReduce.call ( m , 'folders' )
 
-  } // reduceFoldersInSteps func.
+  } // keepFoldersInSteps func.
 
 
 
@@ -879,7 +879,7 @@ model : function () {
 
 
 
-, filterFiles : function filterFiles () {
+, removeFiles : function removeFiles () {
   // * Remove files specified. Uses cache.
    var 
    		  m = toolbox.model()
@@ -912,14 +912,14 @@ model : function () {
 
    toolbox.set ( 'files', m.list )
    afterFilter.call ( m, 'files' )
-  } // filterFiles func.
+  } // removeFiles func.
 
 
 
 
 
 
-, filterFolders : function filterFolders () {
+, removeFolders : function removeFolders () {
   // * Remove folders specified. Uses cache.
    var 
    		  folders = cache.folders
@@ -954,7 +954,7 @@ model : function () {
    
    toolbox.set ( 'folders', m.list )
    afterFilter.call ( m, 'folders' )
-  } // filterFolders func.
+  } // removeFolders func.
 
 
 
@@ -1329,19 +1329,19 @@ var api = {
 			  , resetCache         : toolbox.resetCache           // Reset cache for files and folders
 			  , clearCache         : toolbox.resetCache   
 			  
-			  , scan               : toolbox.scanFiles            // Collect file paths. Writes result to cache
-			  , scanFolder         : toolbox.scanFolders          // Collect sub-folder paths. Writes result to cache
+			  , scan               : toolbox.scanFiles          // Collect file paths. Writes result to cache
+			  , scanFolder         : toolbox.scanFolders        // Collect sub-folder paths. Writes result to cache
 			  , scanFolders        : toolbox.scanFolders
 			   
-			  , reduce             : toolbox.reduce               // Keep specified items. Uses cache
-			  , reduceFolder       : toolbox.reduceFolders        // Keep only folders with specific string in the path. Uses cache.
-			  , reduceFolders      : toolbox.reduceFolders 
-			  , reduceFolderSteps  : toolbox.reduceFoldersInSteps // Execute sequence of reduceFolder
-			  , reduceFoldersSteps : toolbox.reduceFoldersInSteps
+			  , keep               : toolbox.keep               // Keep specified items. Uses cache
+			  , keepFolder         : toolbox.keepFolders        // Keep only folders with specific string in the path. Uses cache.
+			  , keepFolders        : toolbox.keepFolders 
+			  , keepFolderSteps    : toolbox.keepFoldersInSteps // Execute sequence of reduceFolder
+			  , keepFoldersSteps   : toolbox.keepFoldersInSteps
 			  
-			  , filter             : toolbox.filterFiles   // Remove files specified. Uses cache.
-			  , filterFolder       : toolbox.filterFolders // Remove folders specified. Uses cache.
-			  , filterFolders      : toolbox.filterFolders 
+			  , remove             : toolbox.removeFiles   // Remove files specified. Uses cache.
+			  , removeFolder       : toolbox.removeFolders // Remove folders specified. Uses cache.
+			  , removeFolders      : toolbox.removeFolders 
 			                       
 			  , delete             : toolbox.deleteFiles   // Delete file(s) specified.
 			  , deleteFolder       : toolbox.deleteFolders // Delete folder(s). Folder should not contain files.

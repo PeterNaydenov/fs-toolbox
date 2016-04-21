@@ -11,7 +11,7 @@ var
 chai.use(sinonChai)
 
 /*
-	  ReduceFolder Description: 
+	  KeepFolder Description: 
     ================================================
 	  
 	 Reduce list of folders in cache. Keep folder paths that contain 
@@ -19,20 +19,20 @@ chai.use(sinonChai)
 	 function or set( 'folders', ['array with paths'] ).
 
 	 Examples:
-	            > fsbox.reduceFolder (  'images' , callback_func )
-	            Will reduce 'cache.folders'. Will keep folders that have 
+	            > fsbox.keepFolder (  'images' , callback_func )
+	            Will be applied to 'cache.folders' and will keep folders that have 
 	            'images' in a path
 	            
-	            > fsbox.reduceFolder ( ['images' , 'pics'] , callback_func )
-	            Will reduce 'cache.folders'. Will keep folders with 'images' or 
+	            > fsbox.keepFolder ( ['images' , 'pics'] , callback_func )
+	            Will be applied to 'cache.folders' and will keep folders with 'images' or 
 	            'pics' in a path.
 	            
-	            > fsbox.reduceFolder ( ['images' , 'pics'] , [ callback, callback ] )
-	            Like prev. example. Will execute array of callbacks on complete.
+	            > fsbox.keepFolder ( ['images' , 'pics'] , [ callback, callback ] )
+	            Like prev. example. Will execute array of callbacks on completion.
 
 			   - Let's substitute ['images', 'pics'] with pathList
 			   
-			   > fsbox.reduceFolder ( pathList, options, callback )
+			   > fsbox.keepFolder ( pathList, options, callback )
 			   Reduce folder list with options.
 			   Option list : 
 			   				 - deep - reduce subfolders depth after selected word
@@ -42,7 +42,7 @@ chai.use(sinonChai)
 	  
 */
 
-describe ( 'reduceFolder: Reduce list of folders', function () {
+describe ( 'keepFolder: Reduce list of folders', function () {
 	var folders;
 	
 
@@ -59,7 +59,7 @@ describe ( 'reduceFolder: Reduce list of folders', function () {
 
 
 	it ( 'With string' , () => {
-						fsbox.reduceFolder ( 'one-1', ( err, r ) => {
+						fsbox.keepFolder ( 'one-1', ( err, r ) => {
 											expect ( err ).to.be.false
 											expect ( r ).to.be.an('array')
 											expect ( r ).to.have.length ( 8 )
@@ -71,7 +71,7 @@ describe ( 'reduceFolder: Reduce list of folders', function () {
 
 
 	it ( 'With array', () => {
-						fsbox.reduceFolder ( ['one-1', 'two-1'] , ( err , r) => {
+						fsbox.keepFolder ( ['one-1', 'two-1'] , ( err , r) => {
 											expect ( err ).to.be.false
 											expect ( r ).to.be.an('array')
 											expect ( r ).to.have.length ( 12 )
@@ -83,7 +83,7 @@ describe ( 'reduceFolder: Reduce list of folders', function () {
 
 
 	it ( 'Deep option', () => {
-					  fsbox.reduceFolder ( ['one-1'], { deep:0 }, ( err , r ) => {
+					  fsbox.keepFolder ( ['one-1'], { deep:0 }, ( err , r ) => {
 					  						expect ( err ).to.be.false
 					  						expect ( r ).to.have.length(1)
 					        })

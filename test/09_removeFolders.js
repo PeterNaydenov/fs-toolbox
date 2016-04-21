@@ -11,28 +11,27 @@ var
 chai.use(sinonChai)
 
 /*
-	  FilterFolder Description: 
+	  RemoveFolder Description: 
     ================================================
 	  
-	 Filter list of folders in cache. Remove folder paths that contain 
-	 specific words. Fulfil first cache with data by using 'fsbox.scanFolder' 
-	 function or set( 'folders', ['array with paths'] ).
+	 Removes folder paths that contain specific words. 
+	 Fulfil first cache with data by using 'fsbox.scanFolder' function or set( 'folders', ['array with paths'] ).
 
 	 Examples:
-	            > fsbox.filterFolder (  'images' , callback_func )
-	            Will filter 'cache.folders'. Will remove folders that have 
+	            > fsbox.removeFolder (  'images' , callback_func )
+	            Will be applied on 'cache.folders' and will remove folders that have 
 	            'images' in a path
 	            
-	            > fsbox.filterFolder ( ['images' , 'pics'] , callback_func )
-	            Will filter 'cache.folders'. Will remove folders with 'images' or 
+	            > fsbox.removeFolder ( ['images' , 'pics'] , callback_func )
+	            Will be applied on 'cache.folders' and will remove folders with 'images' or 
 	            'pics' in a path.
 	            
-	            > fsbox.filterFolder ( ['images' , 'pics'] , [ callback, callback ] )
+	            > fsbox.removeFolder ( ['images' , 'pics'] , [ callback, callback ] )
 	            Like prev. example. Will execute array of callbacks on complete.
 	  
 */
 
-describe ( 'filterFolder: Filter list of folders', function () {
+describe ( 'removeFolder: Filter list of folders', function () {
 	var folders;
 	
 
@@ -49,7 +48,7 @@ describe ( 'filterFolder: Filter list of folders', function () {
 
 
 	it ( 'With string' , () => {
-					   fsbox.filterFolder ( 'one-1', ( err, r ) => {
+					   fsbox.removeFolder ( 'one-1', ( err, r ) => {
 											expect ( err ).to.be.false
 											expect ( r ).to.have.length ( 11 )
 						     })
@@ -60,7 +59,7 @@ describe ( 'filterFolder: Filter list of folders', function () {
 
 
 	it ( 'With array', () => {
-					 fsbox.filterFolders ( ['one-1', 'work'] , ( err , r) => {
+					 fsbox.removeFolders ( ['one-1', 'work'] , ( err , r) => {
 											expect ( err ).to.be.false
 											expect ( r ).to.have.length ( 7 )
 						     })
@@ -71,7 +70,7 @@ describe ( 'filterFolder: Filter list of folders', function () {
 
 
 	it ( 'Options are not in use', () => {
-					  fsbox.filterFolders ( ['one-1', 'work'], { deep:0 }, ( err , r ) => {
+					  fsbox.removeFolders ( ['one-1', 'work'], { deep:0 }, ( err , r ) => {
 					  						expect ( err ).to.be.false
 					  						expect ( r ).to.have.length(7)
 					        })

@@ -11,14 +11,14 @@ var
 chai.use(sinonChai)
 
 /*
-	  ReduceFolderSteps Description: 
+	  KeepFolderSteps Description: 
     ================================================
 	  
-	 Execute sequence of 'reduceFolder' function with each of list members.
+	 Execute sequence of 'keepFolder' function with each of list members.
 
 */
 
-describe ( 'reduceFolderSteps: Sequence of "reduceFolders"', function () {
+describe ( 'keepFolderSteps: Sequence of "keepFolders"', function () {
 	var folders;
 	
 
@@ -35,7 +35,7 @@ describe ( 'reduceFolderSteps: Sequence of "reduceFolders"', function () {
 
 
 	it ( 'default', () => {
-						fsbox.reduceFolderSteps ( ['one-1', 'two-1'] , ( err , r) => {
+						fsbox.keepFolderSteps ( ['one-1', 'two-1'] , ( err , r) => {
 											expect ( err ).to.be.false
 											expect ( r ).to.have.length ( 4 )
 						     })
@@ -46,7 +46,7 @@ describe ( 'reduceFolderSteps: Sequence of "reduceFolders"', function () {
 
 
 	it ( 'aliase', () => {
-						fsbox.reduceFoldersSteps ( ['one-1', 'two-1'] , ( err , r) => {
+						fsbox.keepFoldersSteps ( ['one-1', 'two-1'] , ( err , r) => {
 											expect ( err ).to.be.false
 											expect ( r ).to.have.length ( 4 )
 						     })
@@ -68,7 +68,7 @@ describe ( 'reduceFolderSteps: Sequence of "reduceFolders"', function () {
 							;
 
 						fsbox.set ( 'folders' , init )
-						fsbox.reduceFolderSteps ( list , { deep: 1 }, ( err, r ) => {
+						fsbox.keepFolderSteps ( list , { deep: 1 }, ( err, r ) => {
 													expect ( err ).to.be.false
 													expect ( r ).to.have.length ( 1 )
 									    })
@@ -90,7 +90,7 @@ describe ( 'reduceFolderSteps: Sequence of "reduceFolders"', function () {
 					;
 
 				fsbox.set ( 'folders' , init )
-				fsbox.reduceFolderSteps ( list , { deep: [2,99] }, ( err, r ) => {
+				fsbox.keepFolderSteps ( list , { deep: [2,99] }, ( err, r ) => {
 											expect ( err ).to.be.false
 											expect ( r ).to.have.length ( 2 )
 							    })
@@ -112,7 +112,7 @@ describe ( 'reduceFolderSteps: Sequence of "reduceFolders"', function () {
 					;
 
 				fsbox.set ( 'folders' , init )
-				fsbox.reduceFolderSteps ( list , { deep: [2] }, ( err, r ) => {
+				fsbox.keepFolderSteps ( list , { deep: [2] }, ( err, r ) => {
 											expect ( err ).to.be.an ( 'array' )
 											expect ( err ).to.have.length ( 1 )
 											expect ( r   ).to.have.length ( 4 )
