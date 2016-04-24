@@ -1,6 +1,19 @@
 # FS Toolbox
 
-Tool-library for working with files. Module works with node version 5 and above.
+Tool-library for working with files. Works with node version 5 and above.
+
+
+
+
+
+## Design Concept
+File system contains two types of items: documents(files) and containers(folders). They are very differents and there is no reason to mix them together. With this library you can do:
+- Scan for all files in specified folders (many folder);
+- Scan for folders inside specified folder (many folders);
+- Result of scan is array with absolute path to the files or folders;
+- Apply filters (keep/remove) to the scan results;
+- Delete many files with just one operation;
+- Create deep folders;
 
 
 
@@ -26,25 +39,6 @@ var fsbox = require ( 'fs-toolbox')
 
 
 
-## Design Concept
-File system contains two types of items: documents(files) and containers(folders). They are very differents and there is no reason to mix them together. With this library you can do:
-- Scan for all files in specified folders (many folder);
-- Scan for folders inside specified folder (many folders);
-- Result of scan is array with absolute path to the files or folders;
-- Apply filters (keep/remove) to the scan results;
-- Delete many files with just one operation;
-- Create deep folders;
-
-
-
-
-
-
-
-
-
-
-
 ## Examples
 
 Folder 'test' can provide you information about how to use this library. Over 60 test examples are on your disposal.
@@ -61,6 +55,11 @@ _(Nothing yet)_
 
 
 ## Release History
+
+### 2.1.0 (2016-04-24)
+ - [x] Documentation update;
+ - [x] Method 'read' was added;
+ - [x] Tests for method 'read' were added;
 
 ### 2.0.0 (2016-04-21)
 
@@ -80,6 +79,7 @@ _(Nothing yet)_
 
 
 
+
 ## Credits
 'fs-toolbox' was created by Peter Naydenov.
 
@@ -88,3 +88,7 @@ _(Nothing yet)_
 
 ## License
 'fs-toolbox' is released under the [MIT License](http://opensource.org/licenses/MIT).
+
+
+
+

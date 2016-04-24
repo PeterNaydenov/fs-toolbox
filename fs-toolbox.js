@@ -1,7 +1,7 @@
 /*
 	FS-Toolbox
 
-	Version: 1.0.0
+	Version: 2.1.0
 	GitHub: https://github.com/PeterNaydenov/fs-toolbox
 	Copyright (c) 2016 Peter Naydenov
 	Licensed under the MIT license.
@@ -307,7 +307,7 @@ model : function () {
   // * Apply callback functions after function execution.
 	   var  error = this.error;
 
-	   if ( error      ) error = this.errorList
+	   if ( error )   error = this.errorList
 	   this.set.callbackList.forEach ( fnName => fnName ( error,  cache[type] )   )
  } // _triggerCallbacks func.
 
@@ -502,6 +502,49 @@ model : function () {
 
 
 
+
+
+
+
+
+
+
+
+
+, readFile  : function readFile ( fx ) {
+  // * Read file(s) and execute callback function with it
+  	   var 
+  	   		  me      = this
+  	   		, m       = toolbox.model()
+  	   		, list    = me.get ( 'files' )
+  	   		, encode = 'utf8'
+  	   		;
+  	   
+  	   list  = me.get ( 'files' )
+  	   if ( list.length == 0 ) {
+  								  m.error = true
+  								  m.errorList.push  ( error_msg [ 'cache.files empty' ] )
+  								  return false
+  	        }
+
+
+  	   if ( !fx ) {
+  	   				let content = []
+  	   				content.length = list.length
+  	   				list.forEach ( (file,i) => {
+					  								try {         content[i] = fs.readFileSync ( file, encode )   }
+					  								catch (err) { content[i] = false   }
+  	   				     })
+  	   				return content
+  	   } 
+
+  	   list.forEach ( (file,i)              => {
+  	   fs.readFile  ( file, encode, (err,r) => {
+  	   												if ( err ) fx ( false, i )
+  	   												else       fx ( r    , i )
+  	   		})
+  	   		})
+ } // readFile func.
 
 
 
@@ -1352,6 +1395,7 @@ var api = {
 			  , emptyFolders       : toolbox.emptyFolders
 			                       
 			  , makeFolder         : toolbox.mkdir
+			  , read               : toolbox.readFile      // Read files and apply function to content
 			  , write              : toolbox.writeFile     // Assert folder existnace and write file
 			  
 			  , sequence           : [ 'Compose sequence of library operations']
