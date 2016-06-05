@@ -167,6 +167,24 @@ describe ( 'keep: Reduce list of files', function () {
 
 
 
+	it ('By file path', () => {
+			
+			var 
+                  str = 'test/deep-test/general.txt'
+			    , select = [str]
+
+			fsbox.set ( 'files', scan )
+			fsbox.keep ( select , { by : 'path' }, ( err , r) => {
+										expect ( err ).to.be.false
+										expect ( r   ).to.contain ( str )
+										expect ( r   ).to.have.length ( 1 )
+			     })
+		}) // it path
+
+
+
+
+
     it ( 'Many callbacks functions.' , ( done ) => {
 
     	 var 

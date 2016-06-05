@@ -759,6 +759,9 @@ model : function () {
 			case 'suffix'    : 
 						   	    marker = 'suffix'
 			                    break
+			case 'path'      :
+			                    marker = 'path'
+			                    break
 		  } // switch by
 	
 	if ( !marker ) {
@@ -800,6 +803,7 @@ model : function () {
 				, 'suffix'   : ( str ) => str.split('/').pop().split('.').shift().split(del.suffix).pop()
 				, 'name'     : ( str ) => str.split('/').pop().split('.').shift()
 				, 'filename' : ( str ) => str.split('/').pop()
+				, 'path'     : ( str ) => str
   } // _find
 
 

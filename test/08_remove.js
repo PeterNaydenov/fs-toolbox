@@ -41,7 +41,7 @@ describe ( 'remove: Filter list of files', function () {
 											expect ( err ).to.be.false
 											expect ( r ).to.not.contain ('test/deep-test/general.txt')
 						     })
-	   }) // it with string
+	   }) // it name
 	
 
 
@@ -53,7 +53,7 @@ describe ( 'remove: Filter list of files', function () {
 											expect ( r ).to.not.contain ('test/deep-test/general.txt')
 											expect ( r ).to.not.contain ('test/deep-test/work/info.txt')
 						     })
-	   }) // it with array
+	   }) // it filename
 	
 
 
@@ -64,7 +64,24 @@ describe ( 'remove: Filter list of files', function () {
 					  						expect ( err ).to.be.false
 					  						expect ( r ).to.have.length ( 3 )
 					        })
-	   }) // it deep
+	   }) // it extension
+
+
+
+
+
+	it ( 'By path', () => {
+					  let str = 'test/deep-test/general.txt'
+					  let rm = [ str ]
+					  fsbox.remove ( rm, { by: 'path' }, ( err , r ) => {
+					  						expect ( err ).to.be.false
+					  						expect ( r ).to.not.contain ( str )
+					        })
+	   }) // it path
+
+
+
+
 	
 	it ( 'Error handling: No options defined.', () => {
 					fsbox.remove ( ['scss'], ( err, r ) => {

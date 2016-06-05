@@ -56,6 +56,10 @@ _(Nothing yet)_
 
 ## Release History
 
+### 2.1.1 (2016-06-05)
+ - [x] Remove and keep methods have new 'by' option 'path'. Path contains full path of the file;
+ - [x] Tests for method 'remove' and 'keep' by 'path' were added;
+
 ### 2.1.0 (2016-04-24)
  - [x] Documentation update;
  - [x] Method 'read' was added;
