@@ -1,7 +1,7 @@
 /*
 	FS-Toolbox
 
-	Version: 2.1.0
+	Version: 3.0.0
 	GitHub: https://github.com/PeterNaydenov/fs-toolbox
 	Copyright (c) 2016 Peter Naydenov
 	Licensed under the MIT license.
@@ -25,14 +25,18 @@ var
 	   fs            = require ( 'fs' )
 	 , askForPromise = require ('ask-for-promise')
 	 , cache         = {}
+	 , writeLocation = []  // Get buffer 'write' content until all write operations are complete
+	 , writeCounter  = 0   // How many records before write callback
 	 , del           = {   // Delimiter symbols for files prefixes and suffixes
 		 			      prefix : '-'
 		 			    , suffix : '-'
 	 		          }
 	 ;
 
-     cache.files   = []   // Placeholder for files
      cache.folders = []   // Placeholder for folders
+     cache.files   = []   // Placeholder for files
+     cache.read    = []   // Placeholder for files - reading operations
+     cache.write   = []   // Placeholder for files - writing operations
 
 
 
@@ -46,7 +50,7 @@ model : function () {
 			       error     : false
     	         , errorList : []      // Contain all error messages
     	         , list      : []      // Agregate results
-    	         , set       : {}
+    	         , set       : {}      // Contain function arguments
    		   }
  } // model func.
 
@@ -127,6 +131,12 @@ model : function () {
 							case 'folders'    : 
 											    value = JSON.stringify ( cache.folders )
 											    break
+						    case 'read'       :
+						    					value = JSON.stringify ( cache.read )
+						    					break
+						    case 'write'      :
+						    					value = JSON.stringify ( cache.write )
+						    					break
 						    case 'del'        :
 						    case 'delimiters' :
 						    					value = JSON.stringify ( del )
@@ -157,6 +167,7 @@ model : function () {
 			 ;
 		
 		if ( arguments.length < 2 ) return false
+		if ( d == undefined       ) return false
 		
 		// Define data type of input 'd'
 		if ( d instanceof Array   ) data_type = 'array'
@@ -208,21 +219,34 @@ model : function () {
 
 
 
-, resetCache : function resetCache () {
-										cache.files   = []
-										cache.folders = []
- } // resetCache func.
+, resetCache : function resetCache ( cacheName ) {
+						
+						if ( !cacheName ) {
+											cache.files   = []
+											cache.folders = []
+											cache.read    = []
+											cache.write   = []
+											writeCounter  = 0
+						   }
+						else                cache [ cacheName ] = []
+
+						if ( cacheName == 'write' ) writeCounter = 0
+   } // resetCache func.
 
 
 
 
 
+, specifyCache : function specifyCache ( aim ) { 
+	// * Moves file cache to 'read' or 'write' cache.
+			cache [ aim     ] = cache['files']
+			cache [ 'files' ] = []
 
-
-
-
-
-
+			if ( aim == 'write' ) {
+										writeLocation = toolbox.get ( 'write' )
+										writeCounter  = writeLocation.length
+				}
+   } // specifyCache func.
 
 
 
@@ -244,6 +268,7 @@ model : function () {
 	fl   = ( a.length > 0 ) ? proto.shift.call(a) : []
 	opt  = ( a.length > 0 ) ? proto.pop.call(a)   : {}
 
+	if ( Buffer.isBuffer(fl)     ) fl = [ fl ]
 	if ( typeof fl == 'string'   ) fl = [ fl ]
 	if ( typeof cb == 'function' ) cb = [ cb ]
 	
@@ -511,16 +536,30 @@ model : function () {
 
 
 
+
+, decode : function ( data ) {
+  // * Decode buffer to file content
+		     return new Buffer ( data , 'binary' ).toString ( 'utf8' ) 
+} // decode func.
+
+
+
+
+
+
+
+
+
 , readFile  : function readFile ( fx ) {
   // * Read file(s) and execute callback function with it
   	   var 
   	   		  me      = this
   	   		, m       = toolbox.model()
-  	   		, list    = me.get ( 'files' )
-  	   		, encode = 'utf8'
+  	   		, list
   	   		;
   	   
-  	   list  = me.get ( 'files' )
+  	   list  = me.get ( 'read'  )
+  	   if ( list.length == 0 )    list  = me.get ( 'files' )
   	   if ( list.length == 0 ) {
   								  m.error = true
   								  m.errorList.push  ( error_msg [ 'cache.files empty' ] )
@@ -536,10 +575,10 @@ model : function () {
 					  								catch (err) { content[i] = false   }
   	   				     })
   	   				return content
-  	   } 
+  	        } 
 
   	   list.forEach ( (file,i)              => {
-  	   fs.readFile  ( file, encode, (err,r) => {
+  	   fs.readFile  ( file, (err,r) => {
   	   												if ( err ) fx ( false, i )
   	   												else       fx ( r    , i )
   	   		})
@@ -558,31 +597,62 @@ model : function () {
 , writeFile : function writeFile () {
   // * Write files
   var 
-	    m        = toolbox.model()
-	  , location = toolbox.get('files')
-	  , after    = toolbox._triggerCallbacks
+	    m      = toolbox.model()
+	  , number = null
+	  , after  = toolbox._triggerCallbacks
 	  ;
-
+  
   m.set = toolbox._argSetup.apply ( this, arguments )
-  if ( location.length == 0 ) {
+  if ( m.set.options.hasOwnProperty('number') )    number = m.set.options.number
+
+
+
+  if ( writeLocation.length == 0 ) {
   								m.error = true
-  								m.errorList.push  ( error_msg [ 'cache.files empty' ] )
-  								return after.call ( m, 'files' )
+  								m.errorList.push  ( error_msg [ 'cache.write is empty' ] )
+  								return after.call ( m, 'write' )
   							  }
 
-  let writeComplete         = location.map ( l => askForPromise() )
-  let writeCompletePromises = writeComplete.map ( o => o.promise )
-  
-  location.forEach (   ( filename, i ) => {
-  		let list = filename.split('/')
-  		list.pop()
-  		toolbox.mkdir ( list.join('/'), ( err, r ) => {
-  						let content = m.set.list[i] || ''
-  						fs.writeFile ( filename , content, 'utf8', ( err, r ) => writeComplete[i].done()   )
-  				}) // mkdir
-        }) // each location
-   
-   Promise.all ( writeCompletePromises ).then ( () => after.call ( m, 'files')   )
+
+
+  if ( number != null ) {
+					  		 let list = writeLocation[number].split('/');
+	  						 list.pop()
+	  						 let content = m.set.list[0] || ''
+	  						 _writeDown ( list , number, content )
+       }
+  else {
+				writeLocation.forEach (   ( filename, i ) => {
+							 let list = filename.split('/');
+				  			 list.pop()
+							 let content = m.set.list[i] || ''
+							 _writeDown ( list, i, content )
+				        }) // each location
+       } // else number
+
+
+
+       function _writeDown ( list , number, content ) {
+				  toolbox.mkdir ( list.join('/'), ( err, r ) => {
+				  						let aBuffer = Buffer.isBuffer ( content )
+				  						if ( !aBuffer ) content = new Buffer ( content, 'binary' )
+				  						fs.writeFile ( writeLocation[number] , content, ( err, r ) => {
+							  																			 writeCounter--
+							  																			 if ( writeCounter == 0 ) _writeEnd ()
+							  												})
+							  		}) // mkdir
+	  			} // writeDown func.
+
+
+
+	  function _writeEnd () { 
+	  							after.call ( m, 'write' )
+	  							writeLocation = []
+	  							toolbox.resetCache ( 'write' )
+	  						}
+
+
+
   } // writeFile func.
 
 
@@ -713,7 +783,7 @@ model : function () {
 
 
 , keep : function keep () {  
-  // * Reduce files in cache.
+  // * Reduce 'file' cache list.
 	
 	var  
    		  m = toolbox.model()
@@ -1032,7 +1102,9 @@ model : function () {
   	     ;
 
   	 m.set = toolbox._argSetup.apply ( this, arguments )
-  	 list  = toolbox.get('files')
+  	 
+  	 list  = toolbox.get ( 'read' )
+  	 if ( list.length == 0 ) list  = toolbox.get('files')
 
   	 let deleteComplete = askForPromise()
 
@@ -1370,16 +1442,19 @@ model : function () {
 
 
 var api = {
-			    set                : toolbox.set           // Change lib options or set cache
-			  , get                : toolbox.get           // Return cache or specified option
+			  // * CACHE 
+			    set                : toolbox.set             // Change lib options or set cache
+			  , get                : toolbox.get             // Return cache or specified option
 			 
-			  , resetCache         : toolbox.resetCache           // Reset cache for files and folders
+			  , fileCacheAs        : toolbox.specifyCache    // Specify type of file cache - read/write operations
+			  , resetCache         : toolbox.resetCache      // Reset cache for files and folders
 			  , clearCache         : toolbox.resetCache   
 			  
 			  , scan               : toolbox.scanFiles          // Collect file paths. Writes result to cache
 			  , scanFolder         : toolbox.scanFolders        // Collect sub-folder paths. Writes result to cache
 			  , scanFolders        : toolbox.scanFolders
 			   
+			  // * FILE LIST MANIPULATION
 			  , keep               : toolbox.keep               // Keep specified items. Uses cache
 			  , keepFolder         : toolbox.keepFolders        // Keep only folders with specific string in the path. Uses cache.
 			  , keepFolders        : toolbox.keepFolders 
@@ -1390,6 +1465,7 @@ var api = {
 			  , removeFolder       : toolbox.removeFolders // Remove folders specified. Uses cache.
 			  , removeFolders      : toolbox.removeFolders 
 			                       
+			  // * FILE MANIPULATION   - cache 'read' and 'folder'
 			  , delete             : toolbox.deleteFiles   // Delete file(s) specified.
 			  , deleteFolder       : toolbox.deleteFolders // Delete folder(s). Folder should not contain files.
 			  , deleteFolders      : toolbox.deleteFolders 
@@ -1398,12 +1474,17 @@ var api = {
 			  , emptyFolder        : toolbox.emptyFolders  // Delete all files and sub-folders.
 			  , emptyFolders       : toolbox.emptyFolders
 			                       
-			  , makeFolder         : toolbox.mkdir
 			  , read               : toolbox.readFile      // Read files and apply function to content
+			  			  
+			  // * FILE MANIPULATION   - cache 'write'
 			  , write              : toolbox.writeFile     // Assert folder existnace and write file
 			  
+			  // * HELPERS - no cache operation
+			  , makeFolder         : toolbox.mkdir         // Create a folder
+			  , decode             : toolbox.decode        // Decode buffer to 'utf8' string
+			  
+			  // * PLANED BUT NOT COMPLETE
 			  , sequence           : [ 'Compose sequence of library operations']
-
 			  // TODO: Paths operations project - 2016.03.08
 			  , modifyPath        : [ 'Modify cache files paths. With replace?'  ]
 			  , modifyPathFolders : [ 'Modify cache folder paths' ]

@@ -32,6 +32,7 @@ describe ( 'write: Write file(s)', function () {
 
 	it ( 'Single file' , (done) => {
 					   fsbox.set('files', 'test/deep-test/dir-test/ahoy/mala/may.txt')
+					   fsbox.fileCacheAs ( 'write' )
 					   fsbox.write ( 'hello from content', ( err, r ) => {
 											expect ( err ).to.be.false
 											done()
@@ -53,6 +54,7 @@ describe ( 'write: Write file(s)', function () {
 					  	   			   ]
 					  			  ;
 					  fsbox.set ( 'files' , files )
+					  fsbox.fileCacheAs ( 'write' )
 					  fsbox.write ( content , ( err , r ) => {
 					  												done ()
 					  		})
@@ -73,6 +75,7 @@ describe ( 'write: Write file(s)', function () {
 					  	   			   ]
 					  			  ;
 					  fsbox.set ( 'files' , files )
+					  fsbox.fileCacheAs ( 'write' )
 					  fsbox.write (   content , ( err , r ) => done ()   )
 	}) // it overwrite
 

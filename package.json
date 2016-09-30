@@ -7,10 +7,13 @@
     "test": "test"
   },
   "dependencies": {
-    "ask-for-promise": ">1.0.0"
+    "ask-for-promise": "^1.2.1"
   },
   "devDependencies": {
-    "chai": ">=3.5.0"
+    "chai": ">=3.5.0",
+    "mocha": "^3.0.2",
+    "sinon": "^1.17.5",
+    "sinon-chai": "^2.8.0"
   },
   "scripts": {
     "test": "test"

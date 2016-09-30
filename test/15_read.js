@@ -37,7 +37,8 @@ it ( 'Single file' , (done) => {
 					   
 					   fsbox.set  ( 'files', list )
 					   fsbox.read ( (content,i) => {
-													 getContent.done ( content )
+													 let str = fsbox.decode ( content )
+													 getContent.done ( str )
 					         })
 
 					   getContent.promise.then ( (results) => {
@@ -60,7 +61,10 @@ it ( 'Multiple files', ( done ) => {
 					   let readPromises = getContent.map ( o => o.promise )
 					   
 					   fsbox.set  ( 'files', list )
-					   fsbox.read ( (content,i) => {   getContent[i].done ( content )   })
+					   fsbox.read ( (content,i) => {   
+					   									let str = fsbox.decode ( content )
+					   									getContent[i].done ( str )   
+					   				 })
 
 					   Promise.all ( readPromises ).then ( (results) => {
 					   													  expect ( results ).to.be.an('array')

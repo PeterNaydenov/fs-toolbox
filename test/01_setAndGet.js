@@ -46,6 +46,12 @@ describe ( 'set & get: Controls cache and filename delimiters', function () {
 
 
 
+    
+    it ( 'Cache files::set string twice' )
+
+
+
+
 
 	it ( 'Cache.files::array', () => {
 			var 
@@ -72,6 +78,13 @@ describe ( 'set & get: Controls cache and filename delimiters', function () {
 			expect ( value_check ).to.be.true
 		})  // it files array
 	
+
+
+
+
+    it ( 'Cache.files:: array twice' )
+    // Set files. Then set again files with array
+
 
 
 

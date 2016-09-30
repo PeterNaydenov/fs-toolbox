@@ -37,6 +37,7 @@ describe ( 'empty: Delete all files in folder', function () {
 					  	   			   ]
 					  			  ;
 					  fsbox.set   ( 'files' , files )
+					  fsbox.fileCacheAs ( 'write' )
 					  fsbox.write ( content , ( err , r ) => done ()   )
 	}) // before
 
