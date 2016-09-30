@@ -31,7 +31,7 @@ let fsbox = require ( 'fs-toolbox')
 
 
 ## Design Concept
-File system contains two types of items: documents(files) and containers(folders). They are very differents and there is no reason to mix them together. With this library you can do:
+File system contains two types of items: documents(files) and containers(folders). They are very different and there is no reason to mix them together. With this library you can do:
 - Scan for all files in specified folders (many folder);
 - Scan for folders inside specified folder (many folders);
 - Result of scan is array with path to the files or folders;
@@ -44,7 +44,7 @@ File system contains two types of items: documents(files) and containers(folders
 
 ## API Interface
 
-Here is the list with methods and short description for each of them:
+Here is the list of methods and а short description for each:
 
 ```
 {
