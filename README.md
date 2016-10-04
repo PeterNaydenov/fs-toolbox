@@ -178,17 +178,28 @@ For more information browse folder 'test'. Find a lot of examples for every func
 
 ### Writing Files
 Collect the list(array) of file paths and set them as 'file' cache. Then set cache.files for write. This command will move cache.files in cache.write. After operation cache.files will be empty and ready to collect other information.
+Method 'write' will convert content to buffer with 'binary' encoding.
 
 ```js
 let writeFiles = [ 'a.txt', 'b.txt', 'c.txt' ];
 let content = [ 'text for file a', 'text for file b', 'text for file c' ]
 
-fsbox.set ( files, writeFiles )
+fsbox.set ( 'files', writeFiles )
 fsbox.fileCacheAs ( 'write' ) // if you want to use files as 'write' list
 fsbox.write ( content, () => console.log ('Files are written')   )
 
 ```
 It's very important to know that callback of write method will be triggered once when all writes are completed.
+
+
+**Attention** : Is is risky to try write JSON and HTML directly to write. Binary encoding will transform incorrect some of the symbols. Is much safe to use 'encode' function for all 'utf8' based files. Function 'encode' can receive also JS object. JS object will be converted to JSON first. Then to buffer.
+
+```js
+ // variable 'content' is array of objects. 
+ // Will be converted to array of buffers.
+ let encodedContent = content.map ( txt => fsbox.encode (txt) )
+
+```
 
 Here is example how to read and write files.
 
@@ -291,8 +302,20 @@ These are all code changes to consider for this upgrade. / from v.1.x to v.2.x. 
 
 ## Release History
 
+### 3.1.0
+- [x] Method 'encode' was added. Encode 'utf8' content before write it;
+- [x] Method 'encode' could receive as a content JS object;
+- [x] Use method 'encode' before send JSON and HTML content to 'write'.
+
+
+
+
 ### 3.0.0 (2016-09-30)
-- [x] Works fine with any kind file-encoding;
+- [x] Method 'write' works with any kind file-encoding;
+- [x] Method 'write' accept buffer objects;
+- [x] Method 'write' has auto-conversion to buffer. Uses 'binary' for encoding.
+- [ ] Binary encoding that method 'write' provide is not works fine with '.json' and '.html';
+- ! Upgrade to 3.1.x and use method 'encode' for all 'utf8' based content;
 - [x] Documentation update;
 - [x] Refactoring: function 'read' returns buffer object
 - [x] Method 'resetCache' was extended. Now reset of only specific cache is available;

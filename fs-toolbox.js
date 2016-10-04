@@ -1,7 +1,7 @@
 /*
 	FS-Toolbox
 
-	Version: 3.0.0
+	Version: 3.1.0
 	GitHub: https://github.com/PeterNaydenov/fs-toolbox
 	Copyright (c) 2016 Peter Naydenov
 	Licensed under the MIT license.
@@ -17,6 +17,7 @@ const
 		 				  , 'no selection'           : 'Error: No selection specified. Provide reduce criteria.'
 		 				  , 'wrong deep level'       : 'Error: Deep level is an array and size is different from folder array.'
 		 				  , 'cache.files empty'      : 'Error: File cache is empty. Please, fulfil files cache by using "set" or "scan" methods.'
+		 				  , 'cache.write empty'      : 'Error: Cache.write is empty.'
 		 				  , 'not empty'              : 'Error: Folder is not empty: '
 	                }
 	 ;
@@ -534,13 +535,15 @@ model : function () {
 
 
 
+, encode : function ( data ) {   // * Encode 'utf8' string to buffer
+	         if ( typeof data == object ) return new Buffer ( JSON.stringify(data), 'utf8' )
+	         							  return new Buffer ( data, 'utf8')
+  } 
 
 
-
-, decode : function ( data ) {
-  // * Decode buffer to file content
+, decode : function ( data ) {   // * Decode buffer to file content
 		     return new Buffer ( data , 'binary' ).toString ( 'utf8' ) 
-} // decode func.
+  }
 
 
 
@@ -616,17 +619,31 @@ model : function () {
 
 
   if ( number != null ) {
-					  		 let list = writeLocation[number].split('/');
-	  						 list.pop()
-	  						 let content = m.set.list[0] || ''
-	  						 _writeDown ( list , number, content )
+					  		 if ( writeLocation[number] === undefined ) {
+  										m.error = true
+  										m.errorList.push  ( error_msg [ 'cache.write is empty' ] )
+  										return _writeEnd ()
+					  		    }
+					  		  else {
+							  		  let list = writeLocation[number].split('/');
+			  						  list.pop ()
+			  						  let content = m.set.list[0] || ''
+			  						  _writeDown ( list , number, content )
+					  		       }
        }
   else {
 				writeLocation.forEach (   ( filename, i ) => {
-							 let list = filename.split('/');
-				  			 list.pop()
-							 let content = m.set.list[i] || ''
-							 _writeDown ( list, i, content )
+							 if ( filename === false ) {
+							 								writeCounter --
+							 								if ( writeCounter == 0 ) _writeEnd ()
+							 								return
+							      }
+							 else {
+															 let list = filename.split('/');
+												  			 list.pop()
+															 let content = m.set.list[i] || ''
+															 _writeDown ( list, i, content )
+							      }
 				        }) // each location
        } // else number
 
@@ -1482,6 +1499,7 @@ var api = {
 			  // * HELPERS - no cache operation
 			  , makeFolder         : toolbox.mkdir         // Create a folder
 			  , decode             : toolbox.decode        // Decode buffer to 'utf8' string
+			  , encode             : toolbox.encode        // Encode 'utf8' string to buffer.
 			  
 			  // * PLANED BUT NOT COMPLETE
 			  , sequence           : [ 'Compose sequence of library operations']

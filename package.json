@@ -16,7 +16,7 @@
     "sinon-chai": "^2.8.0"
   },
   "scripts": {
-    "test": "test"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",

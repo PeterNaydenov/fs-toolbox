@@ -112,6 +112,12 @@ it ( 'Decode string' , () => {
 
 
 
+it ( 'JS object content-> Convert to JSON' )
+
+
+
+
+
 it ( 'Write string to file', done => {
 						let 
 							   wasWritten = askForPromise ()

@@ -94,6 +94,13 @@ describe ( 'write: Write file(s)', function () {
 
 
 
+
+    it ( 'Error handling: False instead filename' )
+
+
+
+
+
 	after ( ( done ) => {
 		                  _deleteFile ( 'test/deep-test/dir-test/ahoy/mala/other.txt' )
 		 		.then ( () => {
