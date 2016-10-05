@@ -84,11 +84,12 @@ Here is the list of methods and а short description for each:
   , read               : 'Read files and apply function to content'
   			  
   // * FILE MANIPULATION   - only cache 'write'
-  , write              : 'Assert folder existnace and write file'
+  , write              :  'Assert folder existnace and write file'
   
   // * HELPERS
-  , makeFolder         : 'Create a folder'
-  , decode             : 'Decode buffer to 'utf8' string'
+  , makeFolder         :  'Create a folder'
+  , decode             :  'Decode buffer to 'utf8' string'
+  , encode             :  'Encode 'utf8' string to buffer.'
 
 }
 
@@ -192,7 +193,7 @@ fsbox.write ( content, () => console.log ('Files are written')   )
 It's very important to know that callback of write method will be triggered once when all writes are completed.
 
 
-**Attention** : Is is risky to try write JSON and HTML directly to write. Binary encoding will transform incorrect some of the symbols. Is much safe to use 'encode' function for all 'utf8' based files. Function 'encode' can receive also JS object. JS object will be converted to JSON first. Then to buffer.
+**Attention** : Is is risky to try send JSON and HTML directly to write. Binary encoding will transform incorrectly some of the symbols. Is much safe to use 'encode' function for all 'utf8' based files. Function 'encode' can receive also JS object. JS object will be converted to JSON first. Then to buffer.
 
 ```js
  // variable 'content' is array of objects. 
@@ -302,10 +303,16 @@ These are all code changes to consider for this upgrade. / from v.1.x to v.2.x. 
 
 ## Release History
 
+### 3.1.1
+- [x] Hot fix for method 'encode'. Working with JS objects;
+
+
+
 ### 3.1.0
 - [x] Method 'encode' was added. Encode 'utf8' content before write it;
 - [x] Method 'encode' could receive as a content JS object;
-- [x] Use method 'encode' before send JSON and HTML content to 'write'.
+- [x] Use method 'encode' before send JSON and HTML content to 'write';
+- [ ] Error in method 'encode' - working with JS objects;
 
 
 
@@ -333,7 +340,7 @@ These are all code changes to consider for this upgrade. / from v.1.x to v.2.x. 
  - [x] Works only with 'utf8' encoded files;
  - [x] Remove and keep methods have new 'by' option 'path'. Path contains full path of the file;
  - [x] Tests for method 'remove' and 'keep' by 'path' were added;
- - [-] Crash of method 'set' on: fsbox.set('files', undefined);
+ - [ ] Crash of method 'set' on: fsbox.set('files', undefined);
 
 
 
@@ -343,7 +350,7 @@ These are all code changes to consider for this upgrade. / from v.1.x to v.2.x. 
  - [x] Documentation update;
  - [x] Method 'read' was added;
  - [x] Tests for method 'read' were added;
- - [-] Crash of method 'set' on: fsbox.set('files', undefined);
+ - [ ] Crash of method 'set' on: fsbox.set('files', undefined);
 
 
 
@@ -356,14 +363,14 @@ These are all code changes to consider for this upgrade. / from v.1.x to v.2.x. 
  - [x] Refactoring: function 'reduceFolderSteps' was renamed to 'keepFolderSteps';
  - [x] Refactoring: function 'filter' was renamed to 'remove';
  - [x] Refactoring: function 'filterFolder' was renamed to 'removeFolder';
- - [-] Crash of method 'set' on: fsbox.set('files', undefined);
+ - [ ] Crash of method 'set' on: fsbox.set('files', undefined);
 
 ### 1.0.2 (2016-03-12)
 
  - [x] Node module;
  - [x] Test package;
  - [x] Works only with 'utf8' encoded files;
- - [-] Documentation;
+ - [ ] Documentation;
 
 
 

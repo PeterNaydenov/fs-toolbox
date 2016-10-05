@@ -536,8 +536,8 @@ model : function () {
 
 
 , encode : function ( data ) {   // * Encode 'utf8' string to buffer
-	         if ( typeof data == object ) return new Buffer ( JSON.stringify(data), 'utf8' )
-	         							  return new Buffer ( data, 'utf8')
+	         if ( typeof data == 'object' ) return new Buffer ( JSON.stringify(data, null, 4), 'utf8' )
+	         							    return new Buffer ( data, 'utf8')
   } 
 
 
