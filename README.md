@@ -322,7 +322,7 @@ These are all code changes to consider for this upgrade. / from v.1.x to v.2.x. 
 - [x] Method 'write' accept buffer objects;
 - [x] Method 'write' has auto-conversion to buffer. Uses 'binary' for encoding.
 - [ ] Binary encoding that method 'write' provide is not works fine with '.json' and '.html';
-- ! Upgrade to 3.1.x and use method 'encode' for all 'utf8' based content;
+- **! Upgrade to 3.1.x and use method 'encode' for all 'utf8' based content**;
 - [x] Documentation update;
 - [x] Refactoring: function 'read' returns buffer object
 - [x] Method 'resetCache' was extended. Now reset of only specific cache is available;
