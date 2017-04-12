@@ -303,6 +303,11 @@ These are all code changes to consider for this upgrade. / from v.1.x to v.2.x. 
 
 ## Release History
 
+### 3.1.3 (2017.04.12)
+- [x] Buffer creation with `buffer.from()`. `new Buffer()` is deprecated;
+- [x] Dependency update;
+
+
 ### 3.1.2
 - [x] Dependency update;
 
