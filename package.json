@@ -1,6 +1,6 @@
 {
   "name": "fs-toolbox",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "description": "File System Toolbox",
   "main": "src/fs-toolbox.js",
   "directories": {
@@ -18,7 +18,7 @@
   },
   "scripts": {
     "test": "mocha test",
-    "cover" : "nyc mocha test"
+    "cover": "nyc mocha test"
   },
   "repository": {
     "type": "git",
