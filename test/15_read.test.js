@@ -2,14 +2,14 @@
 
 var 
 	  chai          = require ( 'chai' )
-	, expect        = require ( 'chai' ).expect
 	, sinon         = require ( 'sinon'           )
 	, sinonChai     = require ( 'sinon-chai'      )
-	, fsbox         = require ( '../fs-toolbox'   )
-	, askForPromise = require ( 'ask-for-promise' )
+	, expect        = chai.expect
+	, askForPromise = require ( 'ask-for-promise'   )
+	, fsbox         = require ( '../src/fs-toolbox' )
 	;
 
-chai.use(sinonChai)
+chai.use ( sinonChai )
 
 /*
 	  Read Description: 

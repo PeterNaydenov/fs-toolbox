@@ -5,7 +5,7 @@ var
 	, expect    = require ( 'chai' ).expect
 	, sinon     = require ( 'sinon' )
 	, sinonChai = require ( 'sinon-chai')
-	, fsbox     = require ( '../fs-toolbox')
+	, fsbox     = require ( '../src/fs-toolbox')
 	;
 
 chai.use(sinonChai)

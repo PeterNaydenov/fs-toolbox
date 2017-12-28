@@ -2,13 +2,13 @@
 
 var 
 	  chai      = require ( 'chai' )
-	, expect    = require ( 'chai' ).expect
 	, sinon     = require ( 'sinon' )
 	, sinonChai = require ( 'sinon-chai')
-	, fsbox     = require ( '../fs-toolbox')
+	, expect    = chai.expect
+	, fsbox     = require ( '../src/fs-toolbox')
 	;
 
-chai.use(sinonChai)
+chai.use ( sinonChai )
 
 /*
 	  KeepFolderSteps Description: 
