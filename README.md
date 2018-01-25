@@ -215,7 +215,7 @@ fsbox.fileCacheAs ( 'write' )
 fsbox.set ( 'files', in )
 
 fsbox.read  ( (content,i) => 
-fsbox.write (  content, (err,r) => console.log ( 'Files are written' )
+fsbox.write (  content, {number:i}, (err,r) => console.log ( 'Files are written' )
      ))
 
 // callback function for read is on every read. 
