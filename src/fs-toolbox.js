@@ -1,7 +1,7 @@
 /*
 	FS-Toolbox
 
-	Version: 3.1.4
+	Version: 3.1.5
 	GitHub: https://github.com/PeterNaydenov/fs-toolbox
 	Copyright (c) 2016 Peter Naydenov
 	Licensed under the MIT license.
