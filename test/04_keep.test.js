@@ -2,13 +2,9 @@
 
 var 
 	  chai      = require ( 'chai' )
-	, sinon     = require ( 'sinon' )
-	, sinonChai = require ( 'sinon-chai')
 	, expect    = chai.expect
 	, fsbox     = require ( '../src/fs-toolbox')
 	;
-
-chai.use ( sinonChai )
 
 
 
@@ -68,7 +64,7 @@ describe ( 'keep: Reduce list of files', function () {
 			fsbox.keep ( get_txt, { by : 'extension' } , ( err, r ) => {
 										expect ( err ).to.be.false
 										expect ( r   ).to.be.an('array')
-										expect ( r   ).to.have.length(3)
+										expect ( r   ).to.have.length(9)
 					 		})
 			
 			fsbox.set ( 'files', scan )
@@ -82,7 +78,7 @@ describe ( 'keep: Reduce list of files', function () {
 			fsbox.keep ( get_both, { by : 'ext' }, ( err, r ) => {
 										expect ( err ).to.be.false
 										expect ( r   ).to.be.an('array')
-										expect ( r   ).to.have.length(9)
+										expect ( r   ).to.have.length(15)
 			                })
 
 			// error handling...
@@ -90,14 +86,14 @@ describe ( 'keep: Reduce list of files', function () {
 			fsbox.keep ( get_none, { by : 'ext' }, ( err, r ) => {
 										expect ( err ).to.be.an('array')
 										expect ( r   ).to.be.an('array')
-										expect ( r   ).to.have.length(9)
+										expect ( r   ).to.have.length(15)
 			                })
 
 			fsbox.set ( 'files', scan )
 			fsbox.keep ( get_string, { by : 'ext' }, ( err, r ) => {
 										expect ( err ).to.be.false
 										expect ( r   ).to.be.an('array')
-										expect ( r   ).to.have.length(3)
+										expect ( r   ).to.have.length(9)
 			                })
 	     }) // it extension
 
@@ -221,7 +217,7 @@ describe ( 'keep: Reduce list of files', function () {
 			fsbox.keep ( ['info'], { by : 'strange' }, ( err , r ) => {
 									expect ( err ).to.be.an('array')
 									expect ( err ).to.contain('Error: Option "by" is not defined or not correct. Please, check the documentation.')
-									expect ( r ).to.have.length(9)
+									expect ( r ).to.have.length ( 15 )
 			   })
 
 			fsbox.set ( 'files', scan )
@@ -229,7 +225,7 @@ describe ( 'keep: Reduce list of files', function () {
 			fsbox.keep ( ['info'], ( err , r) => {
 									expect ( err ).to.be.an('array')
 									expect ( err ).to.contain ('Error: Wrong numbers or type of arguments. Please, check the documentation.')
-									expect ( r ).to.have.length(9)
+									expect ( r ).to.have.length ( 15 )
 			             })
 	   }) // it errors
 })

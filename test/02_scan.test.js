@@ -2,15 +2,9 @@
 
 var 
 	  chai      = require ( 'chai' )
-	, sinon     = require ( 'sinon' )
-	, sinonChai = require ( 'sinon-chai')
 	, expect    = chai.expect
 	, fsbox     = require ( '../src/fs-toolbox')
 	;
-
-chai.use ( sinonChai )
-
-
 
 
 
@@ -105,8 +99,8 @@ describe ('scan: Scan for files', function () {
 				 options.deep = 2
 				 fsbox.scan ( folder, options , function ( err, r) {
 				 				expect(err).to.be.false
-				 				expect(r).to.be.an('array')
-				 				expect(r).to.have.length(3)
+								expect(r).to.be.an('array')
+				 				expect(r).to.have.length(4)
 				 				done()
 				      }) // scan
 

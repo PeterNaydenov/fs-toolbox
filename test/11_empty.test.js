@@ -3,13 +3,11 @@
 var 
 	  chai      = require ( 'chai' )
 	, expect    = require ( 'chai' ).expect
-	, sinon     = require ( 'sinon' )
-	, sinonChai = require ( 'sinon-chai')
 	, fsbox     = require ( '../src/fs-toolbox')
 	;
 
-chai.use(sinonChai)
 
+	
 /*
 	  Empty Description: 
     ================================================

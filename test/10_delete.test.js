@@ -2,14 +2,12 @@
 
 var 
 	  chai      = require ( 'chai' )
-	, sinon     = require ( 'sinon' )
-	, sinonChai = require ( 'sinon-chai')
 	, expect    = chai.expect
 	, fsbox     = require ( '../src/fs-toolbox')
 	;
 
-chai.use ( sinonChai )
 
+	
 /*
 	  Delete Description: 
     ================================================

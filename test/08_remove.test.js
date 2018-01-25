@@ -2,14 +2,12 @@
 
 var 
 	  chai      = require ( 'chai' )
-	, sinon     = require ( 'sinon' )
-	, sinonChai = require ( 'sinon-chai')
 	, expect    = chai.expect
 	, fsbox     = require ( '../src/fs-toolbox')
 	;
 
-chai.use(sinonChai)
 
+	
 /*
 	  Remove Description: 
     ================================================
@@ -62,7 +60,7 @@ describe ( 'remove: Filter list of files', function () {
 	it ( 'By extension', () => {
 					  fsbox.remove ( ['scss'], { by: 'ext' }, ( err , r ) => {
 					  						expect ( err ).to.be.false
-					  						expect ( r ).to.have.length ( 3 )
+					  						expect ( r ).to.have.length ( 9 )
 					        })
 	   }) // it extension
 
@@ -87,7 +85,7 @@ describe ( 'remove: Filter list of files', function () {
 					fsbox.remove ( ['scss'], ( err, r ) => {
 										   expect ( err ).to.be.an('array')
 										   expect ( err ).to.have.length ( 2 )
-										   expect ( r ).to.have.length ( 9 )
+										   expect ( r ).to.have.length ( 15 )
 					        })
 	      }) // it Errors
 

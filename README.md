@@ -215,7 +215,7 @@ fsbox.fileCacheAs ( 'write' )
 fsbox.set ( 'files', in )
 
 fsbox.read  ( (content,i) => 
-fsbox.write (  content, {number:i}, => console.log ( 'Files are written' )
+fsbox.write (  content, (err,r) => console.log ( 'Files are written' )
      ))
 
 // callback function for read is on every read. 
@@ -250,7 +250,7 @@ _(Nothing yet)_
 
 
 
-## Ugrade notes
+## Upgrade notes
 
 ### 2.x - 3.x
 Until now **fs-toolbox** was a tool for working with 'utf8' encoded files like '.html', '.css', '.js', '.txt', etc. With version 3 this limitation was eliminated.
