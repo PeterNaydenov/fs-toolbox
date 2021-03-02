@@ -652,7 +652,7 @@ model : function () {
        function _writeDown ( list , number, content ) {
 				  toolbox.mkdir ( list.join('/'), ( err, r ) => {
 				  						let aBuffer = Buffer.isBuffer ( content )
-				  						if ( !aBuffer ) content = new Buffer ( content, 'binary' )
+				  						if ( !aBuffer ) content = Buffer.from ( content, 'binary' )
 				  						fs.writeFile ( writeLocation[number] , content, ( err, r ) => {
 							  																			 writeCounter--
 							  																			 if ( writeCounter == 0 ) _writeEnd ()
