@@ -303,6 +303,11 @@ These are all code changes to consider for this upgrade. / from v.1.x to v.2.x. 
 
 ## Release History
 
+### 3.1.5 ( 2021.03.02 )
+- [x] Dependency update;
+
+
+
 ### 3.1.4 (2017.12.29)
 - [x] Dependency update;
 - [x] Test coverage tools;
