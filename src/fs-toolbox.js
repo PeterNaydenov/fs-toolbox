@@ -16,7 +16,7 @@ const
 		 				  , 'wrong by'               : 'Error: Option "by" is not defined or not correct. Please, check the documentation.'
 		 				  , 'no selection'           : 'Error: No selection specified. Provide reduce criteria.'
 		 				  , 'wrong deep level'       : 'Error: Deep level is an array and size is different from folder array.'
-		 				  , 'cache.files empty'      : 'Error: File cache is empty. Please, fulfil files cache by using "set" or "scan" methods.'
+		 				  , 'cache.files empty'       : 'Error: File cache is empty. Please, fulfil files cache by using "set" or "scan" methods.'
 		 				  , 'cache.write empty'      : 'Error: Cache.write is empty.'
 		 				  , 'not empty'              : 'Error: Folder is not empty: '
 	                }
