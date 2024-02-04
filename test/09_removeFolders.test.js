@@ -30,6 +30,9 @@ var
 */
 
 describe ( 'removeFolder: Filter list of folders', function () {
+	
+	
+
 	var folders;
 	
 

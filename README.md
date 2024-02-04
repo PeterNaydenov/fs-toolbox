@@ -303,6 +303,13 @@ These are all code changes to consider for this upgrade. / from v.1.x to v.2.x. 
 
 ## Release History
 
+
+
+### 3.1.8 ( 2024.02.04 )
+- [x] Dependency update. Ask-for-promise@2.0.3
+
+
+
 ### 3.1.7 ( 2021.03.02 )
 - [x] Dependency update;
 
