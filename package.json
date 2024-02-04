@@ -1,6 +1,6 @@
 {
   "name": "fs-toolbox",
-  "version": "3.1.7",
+  "version": "3.1.8",
   "description": "File System Toolbox",
   "main": "src/fs-toolbox.js",
   "directories": {
