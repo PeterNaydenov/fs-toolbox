@@ -1,10 +1,7 @@
 'use strict'
 
-var 
-	  chai      = require ( 'chai' )
-	, expect    = chai.expect
-	, fsbox     = require ( '../src/fs-toolbox')
-	;
+import { expect } from 'chai'
+import fsbox from '../src/fs-toolbox.js'
 
 
 	
@@ -18,7 +15,7 @@ var
 
 describe ( 'delete: Delete all file-paths in cache.', function () {
 	var 
-		  fs = require ( 'fs' )
+		  fs = import ( 'fs' )
 		, folders
 		;
 

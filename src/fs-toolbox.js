@@ -10,6 +10,11 @@
 
 'use strict'
 
+import fs from 'fs'
+import askForPromise from 'ask-for-promise'
+
+
+
 const
 	    error_msg = {   // Error message strings
 		 				    'wrong argument numbers' : 'Error: Wrong numbers or type of arguments. Please, check the documentation.'
@@ -22,10 +27,8 @@ const
 	                }
 	 ;
 
-var	
-	   fs            = require ( 'fs' )
-	 , askForPromise = require ('ask-for-promise')
-	 , cache         = {}
+let	
+	   cache         = {}
 	 , writeLocation = []  // Get buffer 'write' content until all write operations are complete
 	 , writeCounter  = 0   // How many records before write callback
 	 , del           = {   // Delimiter symbols for files prefixes and suffixes
@@ -87,7 +90,6 @@ model : function () {
     toolbox._scanSetup.call ( m )
 	if ( m.error ) toolbox._walkFiles.call ( m, [] , [] )
     else           toolbox._walkFiles.call ( m, m.set.list , m.foldersDeep )
- 
   }   // scanFiles func.
 
 
@@ -362,8 +364,9 @@ model : function () {
   	      me = this
   	    , folder
  		, deep
- 		, path = require ('path')
+ 		, path
   	    ;
+	import ( 'path').then ( res => path = res )
 
   	if ( foldersToScan.length == 0 ) {
   										toolbox.set ('files', me.list )
@@ -452,8 +455,9 @@ model : function () {
   	      me = this
   	    , folder
  		, deep
- 		, path = require ('path')
+ 		, path
   	    ;
+	import ( 'path' ).then ( res => path = res )
 
   	if ( foldersToScan.length == 0 ) {
   									    toolbox.set  ( 'folders', me.list )
@@ -1510,7 +1514,7 @@ var api = {
 
 
 
-module.exports = api
+export default api
 
 
 

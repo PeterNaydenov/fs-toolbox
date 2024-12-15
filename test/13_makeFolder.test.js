@@ -1,12 +1,10 @@
 'use strict'
 
-var 
-	  chai      = require ( 'chai' )
-	, expect    = chai.expect
-	, fsbox     = require ( '../src/fs-toolbox')
-	;
+import { expect } from 'chai'
+import fsbox from '../src/fs-toolbox.js'
 
-
+var fs;
+import ( 'fs' ).then ( res => fs = res )
 	
 /*
 	  Mkdir Description: 
@@ -70,10 +68,7 @@ describe ( 'makeFolder: Creates a folder', function () {
 
 
 	after ( (done) => {
-					var 
-						  fs = require ( 'fs' )
-						, list
-						;
+					var list;
 					
 					// remove this list of folders
 					list = [

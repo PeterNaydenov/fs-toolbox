@@ -1,10 +1,7 @@
 'use strict'
 
-var 
-	  chai      = require ( 'chai' )
-	, expect    = require ( 'chai' ).expect
-	, fsbox     = require ( '../src/fs-toolbox')
-	;
+import { expect } from 'chai'
+import fsbox from '../src/fs-toolbox.js'
 
 
 	
@@ -17,11 +14,8 @@ var
 */
 
 describe ( 'empty: Delete all files in folder', function () {
-	var 
-		  fs = require ( 'fs' )
-		, folders
-		;
-
+	var fs;
+	import ( 'fs' ).then ( res => fs = res )
 
 
 	beforeEach ( ( done ) => {
@@ -107,7 +101,7 @@ describe ( 'empty: Delete all files in folder', function () {
 
 		  function _deleteFile ( filename ) {
 		  return new Promise ( (resolve, reject ) => {
-		  			 fs.unlink ( filename , () => resolve()   )
+		  			 fs.unlink ( filename , () => resolve(true)   )
 		  })
 		  } // _deleteFile
 

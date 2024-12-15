@@ -1,11 +1,8 @@
 'use strict'
 
-var 
-	  chai          = require ( 'chai' )
-	, expect        = chai.expect
-	, askForPromise = require ( 'ask-for-promise'   )
-	, fsbox         = require ( '../src/fs-toolbox' )
-	;
+import { expect } from 'chai'
+import fsbox from '../src/fs-toolbox.js'
+import askForPromise from 'ask-for-promise'
 
 
 	
@@ -22,10 +19,8 @@ var
 */
 
 describe ( 'read: Read files(s)', function () {
-	var 
-		  fs = require ( 'fs' )
-		, folders
-		;
+	var fs;
+	import ( 'fs' ).then ( res => fs = res )
 
 
 

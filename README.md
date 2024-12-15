@@ -10,15 +10,17 @@ Tool-library for working with files. Works with node version 5 and above.
 Install by writing in your terminal:
 
 ```
-npm install fs-toolbox --save
+npm install fs-toolbox
 
 ```
 
 Once it has been installed, it can be used by writing this line of JavaScript:
 
 ```js
-let fsbox = require ( 'fs-toolbox')
+import fsbox from 'fs-toolbox'
 
+// or
+let fsbox = require ( 'fs-toolbox' )
 ```
 
 
@@ -233,11 +235,6 @@ Folder 'test' can provide you information about how to use this library. Over 60
 
 
 
-
-
-
-
-
 ## Known bugs
 _(Nothing yet)_
 
@@ -245,163 +242,10 @@ _(Nothing yet)_
 
 
 
+## Links
 
-
-
-
-
-## Upgrade notes
-
-### 2.x - 3.x
-Until now **fs-toolbox** was a tool for working with 'utf8' encoded files like '.html', '.css', '.js', '.txt', etc. With version 3 this limitation was eliminated.
-
-Changes are:
-
-- **Content of files is coming as buffer object**. Edit string content wil need decoding. Example:
-
-```js
-fsbox.read ( (content,i) => {
-		//  'content' will contain buffer object. You need to decode it.
-		let textContent = fsbox.decode ( content )
-		console.log ( textContent ) 
-})
-
-```
-
-Conversion of 'string' to 'buffer' object is automated inside method 'write' and programmers don't have to think about it.
-
-
-- **Method 'write' can not use 'cache.files' directly anymore**. The method 'write' is potentially harmful. That's why 'cache.files' should be specified as 'for write' imperatively:
-
-```js
- fsbox.set ( 'files', fileList )
- fsbox.fileCacheAs ( 'write' ) // declare that file list is for writing
- fsbox.write ( content, callbackFunction )
-
-```
-
-These are all code changes needed for this upgrade. / from v.2.x to v.3.x. / 
-
-
-
-### 1.x - 2.x
-Renaming of some methods.
- - was 'reduce', now is 'keep'
- - was 'reduceFolder', now is 'keepFolder'
- - was 'reduceFolder', now is 'keepFolder'
- - was 'reduceFolderSteps', now is 'keepFolderSteps'
- - was 'filter', now is 'remove'
- - was 'filterFolder', now is 'removeFolder'
-
-These are all code changes to consider for this upgrade. / from v.1.x to v.2.x. / 
-
-
-
-
-
-
-
-## Release History
-
-
-
-### 3.1.8 ( 2024.02.04 )
-- [x] Dependency update. Ask-for-promise@2.0.3
-
-
-
-### 3.1.7 ( 2021.03.02 )
-- [x] Dependency update;
-
-
-
-### 3.1.4 (2017.12.29)
-- [x] Dependency update;
-- [x] Test coverage tools;
-- [x] Project structure refactoring;
-
-
-
-### 3.1.3 (2017.04.12)
-- [x] Buffer creation with `buffer.from()`. `new Buffer()` is deprecated;
-- [x] Dependency update;
-
-
-### 3.1.2
-- [x] Dependency update;
-
-
-
-### 3.1.1
-- [x] Hot fix for method 'encode'. Working with JS objects;
-
-
-
-### 3.1.0
-- [x] Method 'encode' was added. Encode 'utf8' content before write it;
-- [x] Method 'encode' could receive as a content JS object;
-- [x] Use method 'encode' before send JSON and HTML content to 'write';
-- [ ] Error in method 'encode' - working with JS objects;
-
-
-
-
-### 3.0.0 (2016-09-30)
-- [x] Method 'write' works with any kind file-encoding;
-- [x] Method 'write' accept buffer objects;
-- [x] Method 'write' has auto-conversion to buffer. Uses 'binary' for encoding.
-- [ ] Binary encoding that method 'write' provide is not works fine with '.json' and '.html';
-- **! Upgrade to 3.1.x and use method 'encode' for all 'utf8' based content**;
-- [x] Documentation update;
-- [x] Refactoring: function 'read' returns buffer object
-- [x] Method 'resetCache' was extended. Now reset of only specific cache is available;
-- [x] Method 'decode' was added. Convert buffer type object to 'utf8' string if needed;
-- [x] Refactoring: Function 'write' works with buffer objects and 'utf8' strings;
-- [x] Preventing crash of method 'set' on: fsbox.set('files', undefined);
-- [x] Tests for method 'decode' were added;
-- [x] All tests methods were updated according changes;
-- [x] Upgrade notes are available.
-
-
-
-### 2.1.1 (2016-06-05)
-
- - [x] Works only with 'utf8' encoded files;
- - [x] Remove and keep methods have new 'by' option 'path'. Path contains full path of the file;
- - [x] Tests for method 'remove' and 'keep' by 'path' were added;
- - [ ] Crash of method 'set' on: fsbox.set('files', undefined);
-
-
-
-### 2.1.0 (2016-04-24)
-
- - [x] Works only with 'utf8' encoded files;
- - [x] Documentation update;
- - [x] Method 'read' was added;
- - [x] Tests for method 'read' were added;
- - [ ] Crash of method 'set' on: fsbox.set('files', undefined);
-
-
-
-### 2.0.0 (2016-04-21)
-
- - [x] Works only with 'utf8' encoded files;
- - [x] Initial documentation;
- - [x] Refactoring: function 'reduce' was renamed to 'keep';
- - [x] Refactoring: function 'reduceFolder' was renamed to 'keepFolder';
- - [x] Refactoring: function 'reduceFolderSteps' was renamed to 'keepFolderSteps';
- - [x] Refactoring: function 'filter' was renamed to 'remove';
- - [x] Refactoring: function 'filterFolder' was renamed to 'removeFolder';
- - [ ] Crash of method 'set' on: fsbox.set('files', undefined);
-
-### 1.0.2 (2016-03-12)
-
- - [x] Node module;
- - [x] Test package;
- - [x] Works only with 'utf8' encoded files;
- - [ ] Documentation;
-
-
+- [History of changes](https://github.com/PeterNaydenov/fs-toolbox/blob/master/Changelog.md)
+- [Migration guide](https://github.com/PeterNaydenov/fs-toolbox/blob/master/Migration.guide.md)
 
 
 
@@ -412,7 +256,7 @@ These are all code changes to consider for this upgrade. / from v.1.x to v.2.x. 
 
 
 ## License
-'fs-toolbox' is released under the [MIT License](http://opensource.org/licenses/MIT).
+'fs-toolbox' is released under the [MIT License](https://github.com/PeterNaydenov/fs-toolbox/blob/master/LICENSE).
 
 
 

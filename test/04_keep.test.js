@@ -1,11 +1,7 @@
 'use strict'
 
-var 
-	  chai      = require ( 'chai' )
-	, expect    = chai.expect
-	, fsbox     = require ( '../src/fs-toolbox')
-	;
-
+import { expect } from 'chai'
+import fsbox from '../src/fs-toolbox.js'
 
 
 describe ( 'keep: Reduce list of files', function () {
@@ -59,7 +55,7 @@ describe ( 'keep: Reduce list of files', function () {
 				 , get_none   = []
 				 , get_string = 'txt'
 				 ;
-			
+				 
 			fsbox.set ( 'files', scan )
 			fsbox.keep ( get_txt, { by : 'extension' } , ( err, r ) => {
 										expect ( err ).to.be.false

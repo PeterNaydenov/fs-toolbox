@@ -1,10 +1,7 @@
 'use strict'
 
-var 
-	  chai      = require ( 'chai' )
-	, expect    = chai.expect
-	, fsbox     = require ( '../src/fs-toolbox')
-	;
+import { expect } from 'chai'
+import fsbox from '../src/fs-toolbox.js'
 
 
 	
@@ -21,11 +18,8 @@ var
 */
 
 describe ( 'write: Write file(s)', function () {
-	var 
-		  fs = require ( 'fs' )
-		, folders
-		;
-
+	var fs;
+	import ( 'fs' ).then ( res => fs = res )
 
 
 	it ( 'Single file' , (done) => {

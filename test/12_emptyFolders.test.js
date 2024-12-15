@@ -1,12 +1,10 @@
 'use strict'
 
-var 
-	  chai      = require ( 'chai' )
-	, expect    = chai.expect
-	, fsbox     = require ( '../src/fs-toolbox')
-	;
+import { expect } from 'chai'
+import fsbox from '../src/fs-toolbox.js'
 
-
+var fs;
+import ( 'fs' ).then ( res => fs = res )
 	
 /*
 	  EmptyFolders Description: 
@@ -17,11 +15,7 @@ var
 */
 
 describe ( 'emptyFolders: Delete all files and sub-folders', function () {
-	var 
-		  fs = require ( 'fs' )
-		, folders
-		;
-
+	
 
 
 	beforeEach ( ( done ) => {
