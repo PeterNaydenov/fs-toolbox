@@ -5,7 +5,7 @@
 ## 3.1.9 ( 2024.12.15 )
 - [x] Dependency update. Ask-for-promise@2.0.5
 - [x] Convert library to ES module;
-- [x] NOTE: Still NOT ready. Work in progress;
+- [x] Rollup build introduced. FS-toolbox can be used as CommonJS and ESM modules;
 
 
 

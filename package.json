@@ -4,21 +4,32 @@
   "description": "File System Toolbox",
   "main": "src/fs-toolbox.js",
   "type": "module",
-  "directories": {
-    "test": "mocha test",
-    "cover" : "c8 test"
-  },
+  "exports": {
+            ".": {
+              "import": "./src/fs-toolbox.js",
+              "require": "./dist/fsbox.cjs",
+              "default": "./src/fs-toolbox.js"
+            },
+            "./package.json": "./package.json",
+            "./dist/*": "./dist/*",
+            "./src/*": "./src/*"
+      },
   "dependencies": {
     "ask-for-promise": "2.0.5"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
     "c8": "^10.1.3",
     "chai": "5.1.2",
-    "mocha": "11.0.1"
+    "mocha": "11.0.1",
+    "rollup": "^4.28.1"
   },
   "scripts": {
     "test": "mocha test",
-    "cover": "c8 mocha test"
+    "cover": "c8 mocha test",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
