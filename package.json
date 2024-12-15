@@ -1,19 +1,19 @@
 {
   "name": "fs-toolbox",
-  "version": "3.1.8",
+  "version": "3.1.9",
   "description": "File System Toolbox",
   "main": "src/fs-toolbox.js",
   "type": "module",
   "exports": {
-            ".": {
-              "import": "./src/fs-toolbox.js",
-              "require": "./dist/fsbox.cjs",
-              "default": "./src/fs-toolbox.js"
-            },
-            "./package.json": "./package.json",
-            "./dist/*": "./dist/*",
-            "./src/*": "./src/*"
-      },
+    ".": {
+      "import": "./src/fs-toolbox.js",
+      "require": "./dist/fsbox.cjs",
+      "default": "./src/fs-toolbox.js"
+    },
+    "./package.json": "./package.json",
+    "./dist/*": "./dist/*",
+    "./src/*": "./src/*"
+  },
   "dependencies": {
     "ask-for-promise": "2.0.5"
   },
