@@ -1,6 +1,10 @@
 # Release History
 
 
+## 3.1.10 ( 2024.12.18 )
+- [x] Dependency update. Ask-for-promise@3.0.1
+
+
 
 ## 3.1.9 ( 2024.12.15 )
 - [x] Dependency update. Ask-for-promise@2.0.5
