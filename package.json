@@ -26,6 +26,10 @@
     "mocha": "11.7.5",
     "rollup": "^4.57.0"
   },
+  "overrides": {
+    "diff" : "8.0.4",
+    "serialize-javascript" : "^7.0.4"
+  },
   "scripts": {
     "test": "mocha test",
     "cover": "c8 mocha test",
