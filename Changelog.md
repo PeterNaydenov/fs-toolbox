@@ -2,6 +2,11 @@
 
 
 
+## 3.1.12 ( 2026.05.06 )
+- [x] Dependency update. Ask-for-promise@3.1.1
+
+
+
 ## 3.1.11 ( 2024.11.20 )
 - [x] Dependency update. Ask-for-promise@3.1.0
 
