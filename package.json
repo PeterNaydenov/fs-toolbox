@@ -1,6 +1,6 @@
 {
   "name": "fs-toolbox",
-  "version": "3.1.11",
+  "version": "3.1.12",
   "description": "File System Toolbox",
   "main": "src/fs-toolbox.js",
   "type": "module",
@@ -27,8 +27,8 @@
     "rollup": "^4.60.3"
   },
   "overrides": {
-    "diff" : "8.0.4",
-    "serialize-javascript" : "^7.0.4"
+    "diff": "8.0.4",
+    "serialize-javascript": "^7.0.4"
   },
   "scripts": {
     "test": "mocha test",
