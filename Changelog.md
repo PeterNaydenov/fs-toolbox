@@ -2,18 +2,23 @@
 
 
 
+### 3.1.13 ( 2026.07.28 )
+- [x] Dependency update. Ask-for-promise@3.2.0;
+
+
+
 ## 3.1.12 ( 2026.05.06 )
-- [x] Dependency update. Ask-for-promise@3.1.1
+- [x] Dependency update. Ask-for-promise@3.1.1;
 
 
 
 ## 3.1.11 ( 2024.11.20 )
-- [x] Dependency update. Ask-for-promise@3.1.0
+- [x] Dependency update. Ask-for-promise@3.1.0;
 
 
 
 ## 3.1.10 ( 2024.12.18 )
-- [x] Dependency update. Ask-for-promise@3.0.1
+- [x] Dependency update. Ask-for-promise@3.0.1;
 
 
 
