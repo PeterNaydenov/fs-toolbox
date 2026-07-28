@@ -1,6 +1,6 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 
 
@@ -18,7 +18,7 @@ describe ( 'empty: Delete all files in folder', function () {
 	import ( 'fs' ).then ( res => fs = res )
 
 
-	beforeEach ( ( done ) => {
+	beforeEach (() => new Promise((done) => {
 					  var    files   = [
 					  			  	       'test/deep-test/dir-test/ahoy/mala/may.txt'
 					  			  	     , 'test/deep-test/dir-test/ahoy/mala/other.txt'
@@ -31,13 +31,13 @@ describe ( 'empty: Delete all files in folder', function () {
 					  fsbox.set   ( 'files' , files )
 					  fsbox.fileCacheAs ( 'write' )
 					  fsbox.write ( content , ( err , r ) => done ()   )
-	}) // before
+	 })) // before
 
 
 
 
 
-   it ( 'Single folder', ( done ) => {
+   it ( 'Single folder', () => new Promise((done) => {
 					  var    files   = 'test/deep-test/dir-test/ahoy';
 			
 					  fsbox.empty ( files, ( err , r ) => {
@@ -53,13 +53,13 @@ describe ( 'empty: Delete all files in folder', function () {
 									  			done()
 									  		})
 					  		} 
-	}) // it single
+	 })) // it single
 
 
 
 
 
-   it ( 'Multiple folder', ( done ) => {
+   it ( 'Multiple folder', () => new Promise((done) => {
 					  var  files   = [
 					  					  'test/deep-test/dir-test/ahoy'
 					  					, 'test/deep-test/dir-test/ahoy/mala'
@@ -78,7 +78,7 @@ describe ( 'empty: Delete all files in folder', function () {
 											  			done()
 									  			})
 					  		} // _scan func. 
-	}) // it multiple
+	 })) // it multiple
 
 
 
@@ -87,7 +87,7 @@ describe ( 'empty: Delete all files in folder', function () {
 
 
 
-	after ( ( done ) => {
+	afterAll(() => new Promise((done) => {
 		                  _deleteFile ( 'test/deep-test/dir-test/ahoy/mala/other.txt' )
 		 		.then ( () => {
 		  				  _deleteFile ( 'test/deep-test/dir-test/ahoy/mala/may.txt'   )
@@ -112,7 +112,7 @@ describe ( 'empty: Delete all files in folder', function () {
 		    fs.rmdir ( folder , ( err , r ) => _remove ( list )  )
 		  } // _remove
 
-	}) // after
+	 })) // after
 
 
 

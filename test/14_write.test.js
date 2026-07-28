@@ -1,6 +1,6 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 
 
@@ -22,20 +22,20 @@ describe ( 'write: Write file(s)', function () {
 	import ( 'fs' ).then ( res => fs = res )
 
 
-	it ( 'Single file' , (done) => {
+	it ( 'Single file', () => new Promise((done) => {
 					   fsbox.set('files', 'test/deep-test/dir-test/ahoy/mala/may.txt')
 					   fsbox.fileCacheAs ( 'write' )
 					   fsbox.write ( 'hello from content', ( err, r ) => {
 											expect ( err ).to.be.false
 											done()
 						     })
-	    }) // it single file
+	     })) // it single file
 
 
 
 
 
-	it ( 'Multiple files', ( done ) => {
+	it ( 'Multiple files', () => new Promise((done) => {
 					  var    files   = [
 					  			  	       'test/deep-test/dir-test/ahoy/mala/may.txt'
 					  			  	     , 'test/deep-test/dir-test/ahoy/mala/other.txt'
@@ -50,13 +50,13 @@ describe ( 'write: Write file(s)', function () {
 					  fsbox.write ( content , ( err , r ) => {
 					  												done ()
 					  		})
-	}) // it multiple file
+	 })) // it multiple file
 
 
 
 
 
-   it ( 'Overwrite files', ( done ) => {
+   it ( 'Overwrite files', () => new Promise((done) => {
 					  var    files   = [
 					  			  	       'test/deep-test/dir-test/ahoy/mala/may.txt'
 					  			  	     , 'test/deep-test/dir-test/ahoy/mala/other.txt'
@@ -69,7 +69,7 @@ describe ( 'write: Write file(s)', function () {
 					  fsbox.set ( 'files' , files )
 					  fsbox.fileCacheAs ( 'write' )
 					  fsbox.write (   content , ( err , r ) => done ()   )
-	}) // it overwrite
+	 })) // it overwrite
 
 
 
@@ -93,7 +93,7 @@ describe ( 'write: Write file(s)', function () {
 
 
 
-	after ( ( done ) => {
+	afterAll(() => new Promise((done) => {
 		                  _deleteFile ( 'test/deep-test/dir-test/ahoy/mala/other.txt' )
 		 		.then ( () => {
 		  				  _deleteFile ( 'test/deep-test/dir-test/ahoy/mala/may.txt'   )
@@ -118,7 +118,7 @@ describe ( 'write: Write file(s)', function () {
 		    fs.rmdir ( folder , ( err , r ) => _remove ( list )  )
 		  } // _remove
 
-	}) // after
+	 })) // after
 
 
 

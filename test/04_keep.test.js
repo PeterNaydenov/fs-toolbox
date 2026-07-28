@@ -1,6 +1,6 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 
 
@@ -8,7 +8,7 @@ describe ( 'keep: Reduce list of files', function () {
 	
 	var scan;
 	
-	before ( (done) => {
+	beforeAll(() => new Promise((done) => {
 					 var folder = 'test/deep-test'
 					 fsbox.scan ( folder , ( err, r ) => {
 					 			scan = r
@@ -16,7 +16,7 @@ describe ( 'keep: Reduce list of files', function () {
 					 })
 
 					 fsbox.set('del',{ prefix:'-', suffix : '-' })
-	       }) // before
+	        })) // before
 
 
 
@@ -177,7 +177,7 @@ describe ( 'keep: Reduce list of files', function () {
 
 
 
-    it ( 'Many callbacks functions.' , ( done ) => {
+    it ( 'Many callbacks functions.', () => new Promise((done) => {
 
     	 var 
     	 		  list = ['info']
@@ -200,7 +200,7 @@ describe ( 'keep: Reduce list of files', function () {
 				    						 	  		  done()
 	    						               		   }
 	    	                        ])
-       })  // it many callbacks
+        }))  // it many callbacks
 
 
 

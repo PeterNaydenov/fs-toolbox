@@ -1,6 +1,6 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 
 
@@ -42,12 +42,12 @@ describe ( 'keepFolder: Reduce list of folders', function () {
 	
 
 
-	before ( ( done ) => {
+	beforeAll(() => new Promise((done) => {
 			fsbox.scanFolders ( 'test/deep-test', ( err , r ) => {
 																	folders = r
 																	done()
 			     })
-	   }) // before
+	    })) // before
 
 
 

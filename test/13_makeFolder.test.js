@@ -1,6 +1,6 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 
 var fs;
@@ -38,18 +38,18 @@ describe ( 'makeFolder: Creates a folder', function () {
 	
 
 
-	it ( 'From path string' , ( done ) => {
+	it ( 'From path string', () => new Promise((done) => {
 			var path = 'test/deep-test/dir-test/second/level/of/deep';
 			fsbox.makeFolder ( path , ( err , r ) => {
 									expect ( err ).to.be.false
 									expect ( r ).to.be.true
 									done()
 			            })
-	   }) // it string
+	    })) // it string
 	
 
 
-	it ( 'From array of path strings', ( done ) => {
+	it ( 'From array of path strings', () => new Promise((done) => {
 			var list = [
 						   'test/deep-test'
 						 , 'test/deep-test/dir-test/again'
@@ -61,13 +61,13 @@ describe ( 'makeFolder: Creates a folder', function () {
 								 expect ( r ).to.be.true
 								 done()
 			     }) // mkdir
-	   }) // it array
+	    })) // it array
 	
 	
 
 
 
-	after ( (done) => {
+	afterAll(() => new Promise((done) => {
 					var list;
 					
 					// remove this list of folders
@@ -93,5 +93,5 @@ describe ( 'makeFolder: Creates a folder', function () {
 													_remove ( list , done ) 
 												})
 					} // _remove func.
-	      })
+	       }))
 })

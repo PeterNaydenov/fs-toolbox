@@ -1,6 +1,6 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 
 
@@ -213,7 +213,7 @@ describe ( 'set & get: Controls cache and filename delimiters', function () {
 	   }) // it wrong data
 
 
-	 after ( () => {
+	 afterAll( () => {
 	 					fsbox.set('del', { prefix: '-', suffix:'-' })
 	       })
 

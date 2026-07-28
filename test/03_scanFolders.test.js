@@ -1,6 +1,6 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 
 
@@ -9,7 +9,7 @@ describe ( 'scanFolders: Scan for Folder names', function () {
 	
 
 
-	it ( 'Scan for folders' , (done) => {
+	it ( 'Scan for folders', () => new Promise((done) => {
 				
 				var folder = 'test/deep-test/work';
 				
@@ -19,13 +19,13 @@ describe ( 'scanFolders: Scan for Folder names', function () {
 															 expect ( r ).to.have.length(3)
 															 done()
 					})
-	    }) // it scan for folders
+	     })) // it scan for folders
 
 
 
 
 
-	it ( 'Scan for folders with option: Deep level 0' , ( done ) => {
+	it ( 'Scan for folders with option: Deep level 0', () => new Promise((done) => {
 				var
 					   folder  = 'test/deep-test/folder-test'
 					 , options = {}
@@ -39,13 +39,13 @@ describe ( 'scanFolders: Scan for Folder names', function () {
 															 expect ( r ).to.have.length(3)
 															 done()
 				     })
-	    })  // it scan deep 0
+	     }))  // it scan deep 0
 	
 
 
 
 
-	it ( 'Scan for folders with option: Deep level 1' , ( done ) => {
+	it ( 'Scan for folders with option: Deep level 1', () => new Promise((done) => {
 			   var
 			    	  folder = 'test/deep-test/folder-test'
 			    	, options = {}
@@ -58,13 +58,13 @@ describe ( 'scanFolders: Scan for Folder names', function () {
 			   												 expect ( r ).to.have.length(8)
 			   												 done()
 			        })
-	   }) // it scan deep 1
+	    })) // it scan deep 1
 	
 
 
 
 
-	it ( 'Ignore folder names' , ( done) => {
+	it ( 'Ignore folder names', () => new Promise((done) => {
 				var
 					   folder  = 'test/deep-test/folder-test'
 					 , options = {}
@@ -77,13 +77,13 @@ describe ( 'scanFolders: Scan for Folder names', function () {
 					 									 expect ( r   ).to.have.length(3)
 					 									 done()
 					    })
-	  }) // it ignore folder names
+	   })) // it ignore folder names
 
 
 
 
 
-	it ( 'Mixed ignore and deep::number', ( done ) => {
+	it ( 'Mixed ignore and deep::number', () => new Promise((done) => {
 				 var
 				        folder  = [ 
 				        			  'test/deep-test/folder-test/one-1'
@@ -103,13 +103,13 @@ describe ( 'scanFolders: Scan for Folder names', function () {
 				 										done()
 				    }) 
 
-	   }) // it mix ignore + deep
+	    })) // it mix ignore + deep
 	
 
 
 
 
-	it ( 'Mixed ignore and deep::array', ( done ) => {
+	it ( 'Mixed ignore and deep::array', () => new Promise((done) => {
 				 var
 				        folder  = [ 
 				        			  'test/deep-test/folder-test/one-1'
@@ -132,13 +132,13 @@ describe ( 'scanFolders: Scan for Folder names', function () {
 												 expect ( r ).to.not.contain ( 'test/deep-test/folder-test/one-2' )
 				 								 done()
 				    })
-	   }) // it mix ignore + deep
+	    })) // it mix ignore + deep
 
 
 
 
 
-  it ( 'Error handling. Error if folder does not exist', ( done ) => {
+  it ( 'Error handling. Error if folder does not exist', () => new Promise((done) => {
 			var folder = 'nothing';
 			fsbox.scanFolders ( folder, function ( err, r ) { 
 												 expect(err).to.be.a('array')
@@ -147,13 +147,13 @@ describe ( 'scanFolders: Scan for Folder names', function () {
 												 expect(r).to.be.empty
 												 done()
 						})
-	   }) // it error : Folder not exists
+	    })) // it error : Folder not exists
 
 
 
 
 
-  it ( 'Error handling: Different sizes of folder array and deep array. Folder > Deep.' , ( done ) => {
+  it ( 'Error handling: Different sizes of folder array and deep array. Folder > Deep.', () => new Promise((done) => {
   			  var
   			  		  folders = [
    				        			  'test/deep-test/folder-test/one-1'
@@ -171,13 +171,13 @@ describe ( 'scanFolders: Scan for Folder names', function () {
   			  									expect ( r ).to.be.empty
   			  									done()
   			      })
-     }) // it error different sizes
+      })) // it error different sizes
 
 
 
 
 
-  it ( 'Error handling: Different sizes of folder array and deep array. Folder < Deep.' , ( done ) => {
+  it ( 'Error handling: Different sizes of folder array and deep array. Folder < Deep.', () => new Promise((done) => {
   			  var
   			  		  folders = [
    				        			  'test/deep-test/folder-test/one-1'
@@ -193,7 +193,7 @@ describe ( 'scanFolders: Scan for Folder names', function () {
   			  									expect ( r ).to.have.length ( 3 )
   			  									done()
   			      })
-     }) // it error different sizes
+      })) // it error different sizes
 
 
 

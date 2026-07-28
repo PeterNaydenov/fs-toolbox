@@ -1,6 +1,6 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 
 
@@ -20,12 +20,12 @@ describe ( 'remove: Filter list of files', function () {
 	
 
 
-	beforeEach ( ( done ) => {
+	beforeEach (() => new Promise((done) => {
 			fsbox.scan ( 'test/deep-test', ( err , r ) => {
 					 										 folders = r
 															 done()
 			     })
-	   }) // before
+	    })) // before
 
 
 

@@ -1,6 +1,6 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 
 var fs;
@@ -18,7 +18,7 @@ describe ( 'emptyFolders: Delete all files and sub-folders', function () {
 	
 
 
-	beforeEach ( ( done ) => {
+	beforeEach (() => new Promise((done) => {
 					  var    files   = [
 					  			  	       'test/deep-test/dir-test/empty/fold/may.txt'
 					  			  	     , 'test/deep-test/dir-test/empty/fold/other.txt'
@@ -30,13 +30,13 @@ describe ( 'emptyFolders: Delete all files and sub-folders', function () {
 					  			  ;
 					  fsbox.set   ( 'files' , files )
 					  fsbox.write ( content , ( err , r ) => done ()   )
-	}) // before
+	 })) // before
 
 
 
 
 
-   it ( 'Single folder', ( done ) => {
+   it ( 'Single folder', () => new Promise((done) => {
 					  var folder = 'test/deep-test/dir-test';
 			
 					  fsbox.emptyFolder ( folder, ( err , r ) => {
@@ -52,13 +52,13 @@ describe ( 'emptyFolders: Delete all files and sub-folders', function () {
 									  			done()
 									  		})
 					  		} // _scan func. 
-	}) // it single
+	 })) // it single
 
 
 
 
 
-   it ( 'Multiple folder', ( done ) => {
+   it ( 'Multiple folder', () => new Promise((done) => {
 					  var  files   = [
 					  					    'test/deep-test/dir-test/empty'
 					  					  , 'test/deep-test/dir-test/empty/fold'
@@ -79,7 +79,7 @@ describe ( 'emptyFolders: Delete all files and sub-folders', function () {
 											  			done()
 									  			})
 					  		} // _scan func. 
-	  }) // it multiple
+	   })) // it multiple
 
 
 

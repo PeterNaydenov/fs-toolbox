@@ -1,13 +1,13 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 
 
 
 describe ('scan: Scan for files', function () {
 
-	it ( 'Single folder scan.', (done) => {
+	it ( 'Single folder scan.', () => new Promise((done) => {
 	    var folder; 
 
 	    folder = 'test/deep-test';
@@ -22,11 +22,11 @@ describe ('scan: Scan for files', function () {
 												expect(r).to.be.a('array')
 												done()
 			 })
-	    }) // it single scan
+	     })) // it single scan
 
 
 
-	it ( 'Muptiple folder scan.' , function (done) {
+	it ( 'Muptiple folder scan.', () => new Promise((done) => {
 		 var 
 		 	  folderList_1 = [
 			 					  'test/deep-test/branch'
@@ -51,11 +51,11 @@ describe ('scan: Scan for files', function () {
 														 expect ( r).to.have.length(7)	
 		 	 											 done()
 		 	       })
-	   }) // it muptiple scans
+	    })) // it muptiple scans
 
 
 
-	it ( 'Many callback functions.', ( done ) => {
+	it ( 'Many callback functions.', () => new Promise((done) => {
 		var folder = 'test/deep-test', a, b;
 	    
 	    fsbox.scan ( folder , [ 
@@ -69,11 +69,11 @@ describe ('scan: Scan for files', function () {
 				    						 	  done()
 	    						               }
 	    	                  ])
-	    }) // it callback array
+	     })) // it callback array
 
 
 
-	it ( 'Single scan reduced by deep-level restriction' , (done) => {
+	it ( 'Single scan reduced by deep-level restriction', () => new Promise((done) => {
 			var 
 				   folder  = 'test/deep-test'
 				 , options = {}
@@ -101,13 +101,13 @@ describe ('scan: Scan for files', function () {
 				 				done()
 				      }) // scan
 
-	    }) // it deep level
+	     })) // it deep level
 
 
 
 
 
-	it ( 'Multiple scan reduced by deep-level restriction' , (done) => {
+	it ( 'Multiple scan reduced by deep-level restriction', () => new Promise((done) => {
 				var 
 					   folderList_1 = [
 				 	 				       'test/deep-test/branch'
@@ -145,13 +145,13 @@ describe ('scan: Scan for files', function () {
 		 																expect ( r ).to.have.length(6)
 		 															    done()
 		 		    })
-       }) // it multiple scan deep level
+        })) // it multiple scan deep level
 
 
 
 
 
-	it ( 'Multiple scan with diferent deep-level restrictions' , (done) => {
+	it ( 'Multiple scan with diferent deep-level restrictions', () => new Promise((done) => {
 		var 
 				   options    = {}
 				,  folderList = [
@@ -167,13 +167,13 @@ describe ('scan: Scan for files', function () {
 		 																expect ( r   ).to.have.length(2)
 		 																done()
 		 			  })
-	   }) // it different deep level restrictions
+	    })) // it different deep level restrictions
 
 
 
 
 
-	it ( 'Ignore folder names' , ( done ) => {
+	it ( 'Ignore folder names', () => new Promise((done) => {
 		var 
 			  folder     = 'test/deep-test'
 			, options    = {}
@@ -199,12 +199,12 @@ describe ('scan: Scan for files', function () {
 																	done()
 			     }) // scan
 
-	    }) // it ignore folders
+	     })) // it ignore folders
 
 
 
 
-    it ( 'Get files cache.', (done) => {
+    it ( 'Get files cache.', () => new Promise((done) => {
 	    var folder; 
 
 	    folder = 'test/deep-test';
@@ -215,13 +215,13 @@ describe ('scan: Scan for files', function () {
 												expect ( result ).to.be.true
 												done()
 			 })
-	    }) // it cache
+	     })) // it cache
 
 
 
 
 
-	it ( 'Error handling: Single folder does not exist', ( done ) => {
+	it ( 'Error handling: Single folder does not exist', () => new Promise((done) => {
 		var folder = 'nothing';
 		fsbox.scan ( folder, function ( err, r ) { 
 													expect(err).to.be.an('array')
@@ -230,13 +230,13 @@ describe ('scan: Scan for files', function () {
 													expect(r).to.be.empty
 													done()
 						})
-	   }) // it error : Folder not exists
+	    })) // it error : Folder not exists
 
 
 
 
 
-	it ( 'Error handling: Multiple folder does not exist', ( done ) => {
+	it ( 'Error handling: Multiple folder does not exist', () => new Promise((done) => {
 		var folder = [
 						  'nothing'
 						, 'nothing-2'
@@ -250,13 +250,13 @@ describe ('scan: Scan for files', function () {
 													expect(r).to.be.empty
 													done()
 						})
-	   }) // it error : Folder not exists
+	    })) // it error : Folder not exists
 
 
 
 
 
-	it ( 'Error handling: Different sizes of folder array and deep array. Folder > Deep.' , ( done ) => {
+	it ( 'Error handling: Different sizes of folder array and deep array. Folder > Deep.', () => new Promise((done) => {
   			  var
   			  		  folders = [
    				        			  'test/deep-test/folder-test/one-1'
@@ -274,13 +274,13 @@ describe ('scan: Scan for files', function () {
   			  									expect ( r ).to.be.empty
   			  									done()
   			      })
-     }) // it error: Different sizes
+      })) // it error: Different sizes
 
 
 
 
 
-	it ( 'Error handling: Different sizes of folder array and deep array. Folder < Deep.' , ( done ) => {
+	it ( 'Error handling: Different sizes of folder array and deep array. Folder < Deep.', () => new Promise((done) => {
   			  var
   			  		  folders = [
    				        			  'test/deep-test/work'
@@ -296,7 +296,7 @@ describe ('scan: Scan for files', function () {
   			  									expect ( r ).to.have.length ( 1 )
   			  									done()
   			      })
-     }) // it error: Different sizes
+      })) // it error: Different sizes
 }) // describe
 
 

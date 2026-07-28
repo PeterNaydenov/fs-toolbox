@@ -1,6 +1,6 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 import askForPromise from 'ask-for-promise'
 
@@ -24,7 +24,7 @@ describe ( 'read: Read files(s)', function () {
 
 
 
-it ( 'Single file' , (done) => {
+it ( 'Single file', () => new Promise((done) => {
 					   let list         = [ 'test/deep-test/general.txt' ]
 					   let getContent   = askForPromise ()
 					   
@@ -38,13 +38,13 @@ it ( 'Single file' , (done) => {
 			   													  expect ( results ).to.be.an('string')
 			   													  done()  
 					   		 })
-	    }) // it single file
+	     })) // it single file
 
 
 
 
 
-it ( 'Multiple files', ( done ) => {
+it ( 'Multiple files', () => new Promise((done) => {
 					  var    list   = [
 					  			  	       'test/deep-test/general.txt'
 					  			  	     , 'test/deep-test/work/info.txt'
@@ -65,7 +65,7 @@ it ( 'Multiple files', ( done ) => {
 					   													  expect ( results[0]).to.be.equal('Read from ‘deep-test/general.txt’.')
 					   													  done()  
 					   		 })
-	}) // it multiple file
+	 })) // it multiple file
 
 
 
@@ -86,7 +86,7 @@ it ( 'No arguments', () => {
 
 
 
-it ( 'Error Handling: Wrong filename', ( done ) => {
+it ( 'Error Handling: Wrong filename', () => new Promise((done) => {
 					  var    list   = [
 					  			  	       'test/deep-test/general.txt'
 					  			  	     , 'test/deep-test/work/work/work/info.txt'
@@ -106,7 +106,7 @@ it ( 'Error Handling: Wrong filename', ( done ) => {
 					   													  expect ( results[1]).to.be.false
 					   													  done()  
 					   		 })
-	}) // it multiple file
+	 })) // it multiple file
 
 
 

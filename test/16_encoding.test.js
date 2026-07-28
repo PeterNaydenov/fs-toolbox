@@ -1,6 +1,6 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 import askForPromise from 'ask-for-promise'
 
@@ -26,11 +26,11 @@ describe ( 'Encoding', function () {
 	import ( 'fs' ).then ( res => fs = res )
 
 
-beforeEach ( done => 
-fsbox.emptyFolder ( 'test/encoding-test/out', () => done()   
-	  ))
+beforeEach (() => new Promise((done) =>
+fsbox.emptyFolder ( 'test/encoding-test/out', () => done()
+	  )))
 
-it ( 'Read and write binary file' , done => {
+it ( 'Read and write binary file', () => new Promise((done) => {
 		   let 
 		        folder         = [ 'test/encoding-test/in' ]
 		      , haveList    = askForPromise ()
@@ -62,13 +62,13 @@ it ( 'Read and write binary file' , done => {
 		       						  					     })
 		       						  		})
 		             })
-	}) // it read binary file
+	 })) // it read binary file
 
 
 
 
 
-it ( 'Decode buffer', done => {
+it ( 'Decode buffer', () => new Promise((done) => {
 			   let 
 			        folder         = [ 'test/encoding-test/in' ]
 			      , haveList    = askForPromise ()
@@ -88,7 +88,7 @@ it ( 'Decode buffer', done => {
 																		 done ()
 			    					       })
 			             })
-    }) // it decode buffer
+     })) // it decode buffer
 
 
 
@@ -110,7 +110,7 @@ it ( 'JS object content-> Convert to JSON' )
 
 
 
-it ( 'Write string to file', done => {
+it ( 'Write string to file', () => new Promise((done) => {
 						let 
 							   wasWritten = askForPromise ()
 							 , filename   = 'test/encoding-test/out/outside.txt'
@@ -133,7 +133,7 @@ it ( 'Write string to file', done => {
 						 										     })				
 						 						       })
 						       })
-   }) // it write string to file
+    })) // it write string to file
 
 
 
@@ -141,7 +141,7 @@ it ( 'Write string to file', done => {
 
 
 
-it ( 'Copy mixed files' , function (done ) {
+it ( 'Copy mixed files', () => new Promise((done) => {
 						let
 						      filesIN
 						    , filesOUT
@@ -184,7 +184,7 @@ it ( 'Copy mixed files' , function (done ) {
 						  						 	           done ()
 						  					 	     })
 						        })
-     }) // it copy files
+      })) // it copy files
 
 
 

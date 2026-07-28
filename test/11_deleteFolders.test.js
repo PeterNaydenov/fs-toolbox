@@ -1,6 +1,6 @@
 'use strict'
 
-import { expect } from 'chai'
+import { expect } from "vitest"
 import fsbox from '../src/fs-toolbox.js'
 
 
@@ -21,7 +21,7 @@ describe ( 'deleteFolders: Delete all folder-paths in cache.', function () {
 
 
 
-	beforeEach ( ( done ) => {
+	beforeEach (() => new Promise((done) => {
 		  var    files   = [
 		  			  	       'test/deep-test/dir-test/empty/fold/may.txt'
 		  			  	     , 'test/deep-test/dir-test/empty/fold/other.txt'
@@ -33,13 +33,13 @@ describe ( 'deleteFolders: Delete all folder-paths in cache.', function () {
 		  			  ;
 		  fsbox.set   ( 'files' , files )
 		  fsbox.write ( content , ( err , r ) => done ()   )
-	}) // before
+	 })) // before
 
 
 
 
 
-   it ( 'Standard behavior', ( done ) => {
+   it ( 'Standard behavior', () => new Promise((done) => {
 		  var 
 		       files   = [
 		  			          'test/deep-test/dir-test/empty/fold/may.txt'
@@ -57,13 +57,13 @@ describe ( 'deleteFolders: Delete all folder-paths in cache.', function () {
 		  						       })
 		        })
 
-	   }) // it standard
+	    })) // it standard
 
 
 
 
 
-   it ( 'Error handling: Content available', ( done ) => {
+   it ( 'Error handling: Content available', () => new Promise((done) => {
    					    var 
 					       files   = [
 					  			       'test/deep-test/dir-test/empty/fold/may.txt'
@@ -85,16 +85,16 @@ describe ( 'deleteFolders: Delete all folder-paths in cache.', function () {
 					  						  			done()
 					  						       })
 					        })
-      }) // non existing file
+       })) // non existing file
 
 
 
 
 
-   after ( ( done ) => {
+   afterAll(() => new Promise((done) => {
    					var folder = 'test/deep-test/dir-test'
    					fsbox.emptyFolder ( folder , () => done() )
-      }) // after
+       })) // after
 
 
 
